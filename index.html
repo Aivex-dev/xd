@@ -3,710 +3,1753 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Макет сайту — Dark Neon</title>
+  <title>CYBER GEAR — Магазин</title>
   <style>
-    :root {
-      --bg: #1c1c24;          /* графітовий фон */
-      --bg-panel: #26262f;    /* темно-сірі панелі */
-      --black: #08080c;       /* глибокий чорний */
-      --purple: #a855f7;
-      --pink: #ff2d95;
-      --green: #2bff88;
-      --text: #f2f2f7;
-      --muted: #8d8d9a;
-    }
+:root {
+  --bg: #1c1c24;          /* графітовий фон */
+  --bg-panel: #26262f;    /* темно-сірі панелі */
+  --black: #08080c;       /* глибокий чорний */
+  --purple: #a855f7;
+  --pink: #ff2d95;
+  --green: #2bff88;
+  --text: #f2f2f7;
+  --muted: #8d8d9a;
+}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 1rem;
-    }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+}
 
-    button { font-family: inherit; cursor: pointer; }
+button { font-family: inherit; cursor: pointer; }
 
-    /* ---------- HEADER ---------- */
-    header {
-      background: var(--black);
-      padding: 14px 28px;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      border-bottom: 1px solid #1f1f2a;
-    }
 
-    .logo {
-      color: var(--purple);
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
-    }
+.logo {
+  text-decoration: none;
+  color: var(--purple);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+}
 
-    .search {
-      flex: 1;
-      min-width: 0;
-      padding: 12px 22px;
-      background: var(--bg);
-      color: var(--text);
-      border: 1px solid var(--purple);
-      border-radius: 999px;
-      font-size: 1rem;
-      outline: none;
-      box-shadow: 0 0 8px rgba(168, 85, 247, 0.35);
-      transition: box-shadow 0.2s;
-    }
-    .search:focus { box-shadow: 0 0 16px rgba(168, 85, 247, 0.8); }
-    .search::placeholder { color: var(--muted); }
+.search {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 22px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--purple);
+  border-radius: 999px;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.35);
+  transition: box-shadow 0.2s;
+}
+.search:focus { box-shadow: 0 0 16px rgba(168, 85, 247, 0.8); }
+.search::placeholder { color: var(--muted); }
 
-    .lang { color: var(--muted); font-weight: 600; white-space: nowrap; }
-    .lang b { color: var(--green); text-shadow: 0 0 8px rgba(43, 255, 136, 0.7); }
+.lang {
+  background: none;
+  border: 1px solid #33333f;
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.lang:hover { border-color: var(--green); }
+.lang span.on { color: var(--green); text-shadow: 0 0 8px rgba(43, 255, 136, 0.7); }
 
-    .user { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
+.user { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
 
-    .cart {
-      position: relative;
-      background: var(--purple);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 16px;
-      font-size: 1.1rem;
-      box-shadow: 0 0 16px rgba(168, 85, 247, 0.7);
-      transition: transform 0.15s;
-    }
-    .cart:hover { transform: scale(1.08); }
-    .cart-count {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      min-width: 22px;
-      height: 22px;
-      padding: 0 5px;
-      border-radius: 11px;
-      background: var(--pink);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 800;
-      line-height: 22px;
-      box-shadow: 0 0 10px rgba(255, 45, 149, 0.8);
-    }
-    .cart-count:empty { display: none; }
+.cart {
+  position: relative;
+  background: var(--purple);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 1.1rem;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.7);
+  transition: transform 0.15s;
+}
+.cart:hover { transform: scale(1.08); }
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 11px;
+  background: var(--pink);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 22px;
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.8);
+}
+.cart-count:empty { display: none; }
 
-    .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--bg-panel);
-      border: 2px solid var(--pink);
-      box-shadow: 0 0 10px rgba(255, 45, 149, 0.6);
-    }
-    .balance { color: var(--green); font-weight: 700; }
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-panel);
+  border: 2px solid var(--pink);
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.6);
+}
+.balance { color: var(--green); font-weight: 700; }
 
-    /* ---------- MIDDLE ---------- */
-    .middle { display: flex; flex: 1; }
+/* ---------- TOOLBAR (під шапкою) ---------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
 
-    aside {
-      width: 20%;
-      min-width: 190px;
-      background: var(--bg-panel);
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      padding: 22px;
-      border-right: 1px solid #33333f;
-    }
+.filters-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+  transition: all 0.2s;
+}
+.filters-btn:hover,
+.filters-btn.active {
+  background: rgba(168, 85, 247, 0.2);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.8);
+}
+.filters-btn svg, .view-btn svg { width: 20px; height: 20px; }
 
-    .categories { flex: 1; }
-    .categories h3 { margin-bottom: 14px; font-size: 1.2rem; color: var(--purple); }
-    .categories button {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 12px;
-      background: transparent;
-      color: var(--text);
-      border: 1px solid #44445a;
-      border-radius: 10px;
-      font-size: 1rem;
-      transition: all 0.2s;
-    }
-    .categories button:hover,
-    .categories button.active {
-      border-color: var(--purple);
-      color: #fff;
-      background: rgba(168, 85, 247, 0.15);
-      box-shadow: 0 0 14px rgba(168, 85, 247, 0.6);
-    }
+.sort { display: flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 600; font-size: 0.9rem; }
+.sort select {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+}
+.sort select option { background: #1c1c24; color: #f2f2f7; }
 
-    .ad {
-      flex: 1;
-      background: var(--bg);
-      border: 1px solid #33333f;
-      border-radius: 12px;
-      padding: 16px;
-      overflow: hidden;
-    }
-    .ad h3 { margin-bottom: 8px; color: var(--pink); font-size: 1.1rem; }
-    .ad p {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4;
-      line-clamp: 4;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--muted);
-      line-height: 1.4;
-    }
+.view-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+  transition: all 0.2s;
+}
+.view-btn:hover { background: rgba(168, 85, 247, 0.2); box-shadow: 0 0 18px rgba(168, 85, 247, 0.8); }
+.view-btn .ico-grid { display: none; }
+.view-btn.is-list .ico-list { display: none; }
+.view-btn.is-list .ico-grid { display: block; }
 
-    main {
-      flex: 1;
-      min-width: 0;
-      background: var(--bg);
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 34px;
-    }
+.found { margin-left: auto; color: var(--green); font-weight: 700; text-shadow: 0 0 8px rgba(43, 255, 136, 0.5); }
 
-    /* ---------- BANNER ---------- */
-    .banner {
-      background: linear-gradient(120deg, var(--purple), var(--pink));
-      border-radius: 18px;
-      min-height: 220px;
-      padding: 0 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 0 30px rgba(168, 85, 247, 0.35);
-    }
-    .banner h2 { font-size: 2.4rem; color: #fff; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3); }
-    .banner .arrow { color: #fff; font-size: 3.5rem; }
 
-    .arrow {
-      background: none;
-      border: none;
-      line-height: 1;
-      transition: transform 0.15s;
-    }
-    .arrow:hover { transform: scale(1.2); }
+/* ---------- PRODUCT ROWS ---------- */
+.block h2 { margin-bottom: 14px; font-size: 1.6rem; display: flex; align-items: baseline; gap: 12px; }
+.tag { font-size: 0.9rem; color: var(--muted); font-weight: 600; }
 
-    /* ---------- PRODUCT ROWS ---------- */
-    .block h2 { margin-bottom: 14px; font-size: 1.6rem; display: flex; align-items: baseline; gap: 12px; }
-    .tag { font-size: 0.9rem; color: var(--muted); font-weight: 600; }
+.row { display: flex; align-items: center; gap: 12px; }
 
-    .row { display: flex; align-items: center; gap: 12px; }
+.cards {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 4px 14px;
+  scrollbar-width: none;           /* Firefox: ховаємо повзунок */
+  -ms-overflow-style: none;
+}
+.cards::-webkit-scrollbar { display: none; } /* Chrome / Safari */
 
-    .cards {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 8px 4px 14px;
-      scrollbar-width: none;       /* Firefox: ховаємо повзунок */
-      -ms-overflow-style: none;
-    }
-    .cards::-webkit-scrollbar { display: none; } /* Chrome / Safari */
+.nothing { flex: 1; padding: 50px 20px; text-align: center; color: var(--muted); font-size: 1.1rem; }
 
-    .card {
-      flex: 1 0 165px;
-      height: 340px;
-      background: var(--bg-panel);
-      border: 1px solid var(--purple);
-      border-radius: 14px;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 22px rgba(168, 85, 247, 0.8);
-    }
+.card {
+  flex: 0 0 200px;
+  height: 470px;
+  background: var(--bg-panel);
+  border: 1px solid var(--purple);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 22px rgba(168, 85, 247, 0.8);
+}
+/* порядок у плитці: фото, кнопки, назва, ціна */
+.card .photo { order: 1; }
+.card .card-buttons { order: 2; }
+.card .card-body { order: 3; }
+.card .price { order: 4; }
+.card .rating { order: 5; }
 
-    .photo {
-      flex: 1;
-      background: #121218;
-      border-radius: 10px;
-    }
+.photo {
+  flex: 1;
+  min-height: 0;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-    .card-buttons { display: flex; gap: 6px; }
-    .card-buttons button {
-      flex: 1;
-      padding: 8px 4px;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      transition: all 0.2s;
-    }
-    .btn-info {
-      background: transparent;
-      color: var(--purple);
-      border: 1px solid var(--purple);
-    }
-    .btn-info:hover { background: var(--purple); color: #fff; box-shadow: 0 0 10px var(--purple); }
-    .btn-buy {
-      background: var(--pink);
-      color: #fff;
-      border: 1px solid var(--pink);
-    }
-    .btn-buy:hover { box-shadow: 0 0 12px var(--pink); }
-    .btn-buy:active { transform: scale(0.94); }
+.card-buttons { display: flex; gap: 6px; }
+.card-buttons button {
+  flex: 1;
+  padding: 8px 4px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-info {
+  background: transparent;
+  color: var(--purple);
+  border: 1px solid var(--purple);
+}
+.btn-info:hover { background: var(--purple); color: #fff; box-shadow: 0 0 10px var(--purple); }
+.btn-buy {
+  background: var(--pink);
+  color: #fff;
+  border: 1px solid var(--pink);
+}
+.btn-buy:hover { box-shadow: 0 0 12px var(--pink); }
+.btn-buy:active { transform: scale(0.94); }
 
-    .card-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 6px;
-    }
-    .name { color: #fff; font-weight: 600; }
-    .price { color: var(--green); font-weight: 800; text-shadow: 0 0 8px rgba(43, 255, 136, 0.6); white-space: nowrap; }
+.card-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.name { color: #fff; font-weight: 600; }
+.card .name {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  min-height: 2.6em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+.type { color: var(--muted); font-size: 0.78rem; }
+.price { color: var(--green); font-weight: 800; text-shadow: 0 0 8px rgba(43, 255, 136, 0.6); white-space: nowrap; }
+.card .price { font-size: 1.15rem; }
 
-    .slide-arrow { color: var(--purple); font-size: 4.5rem; text-shadow: 0 0 14px rgba(168, 85, 247, 0.8); }
 
-    /* ---------- DISCOUNT ---------- */
-    .discount {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      background: var(--bg-panel);
-      border: 1px solid #33333f;
-      border-radius: 14px;
-      padding: 20px 24px;
-      align-self: flex-start;
-    }
-    .prices { display: flex; flex-direction: column; }
-    .new-price { color: var(--pink); font-size: 2.2rem; font-weight: 800; text-shadow: 0 0 12px rgba(255, 45, 149, 0.7); }
-    .old-price { color: var(--muted); font-size: 1.2rem; text-decoration: line-through; }
-    .percent {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: var(--green);
-      color: #08080c;
-      font-weight: 800;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 14px rgba(43, 255, 136, 0.7);
-    }
+/* ---------- ОЦІНКА (зірки) ---------- */
+.rating { display: flex; align-items: center; gap: 8px; }
+.stars {
+  --pct: calc(var(--r) / 5 * 100%);
+  display: inline-block;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  line-height: 1;
+  background: linear-gradient(90deg, #ffd23f var(--pct), #4a4a5c var(--pct));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.rate-num { color: var(--text); font-weight: 700; font-size: 0.9rem; }
 
-    /* ---------- CART MODAL ---------- */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      padding: 16px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s, visibility 0.25s;
-    }
-    .overlay.open { opacity: 1; visibility: visible; }
+.slide-arrow { color: var(--purple); font-size: 4.5rem; text-shadow: 0 0 14px rgba(168, 85, 247, 0.8); }
 
-    .cart-window {
-      position: relative;
-      width: min(1050px, 100%);
-      height: min(600px, 92vh);
-      background: var(--bg);
-      border: 1px solid var(--purple);
-      border-radius: 18px;
-      box-shadow: 0 0 40px rgba(168, 85, 247, 0.7);
-      display: flex;
-      transform: scale(0.94);
-      transition: transform 0.25s;
-    }
-    .overlay.open .cart-window { transform: scale(1); }
+/* ---------- ВІКНО «ПРО ТОВАР» ---------- */
+.product-window {
+  position: relative;
+  width: min(900px, 100%);
+  max-height: 94vh;
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid var(--purple);
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.7);
+  display: flex;
+  gap: 26px;
+  padding: 26px;
+  transform: scale(0.94);
+  transition: transform 0.25s;
+}
+#productOverlay.open .product-window { transform: scale(1); }
+.product-photo {
+  flex: 1.3;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.product-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.product-info h3 { font-size: 1.6rem; line-height: 1.25; color: #fff; padding-right: 30px; }
+.p-meta { color: var(--muted); display: flex; flex-direction: column; gap: 4px; font-size: 0.95rem; }
+.product-info .price { font-size: 2rem; }
+.product-info .btn-buy {
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  box-shadow: 0 0 18px rgba(255, 45, 149, 0.6);
+}
+.card .photo { cursor: zoom-in; }
+@media (max-width: 720px) {
+  .product-window { flex-direction: column; }
+  .product-photo { flex: none; width: 100%; }
+}
 
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      background: none;
-      border: none;
-      color: var(--pink);
-      font-size: 2rem;
-      line-height: 1;
-      text-shadow: 0 0 10px rgba(255, 45, 149, 0.8);
-      z-index: 2;
-    }
-    .close:hover { transform: scale(1.2); }
+/* ---------- CART MODAL ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+}
+.overlay.open { opacity: 1; visibility: visible; }
 
-    .cart-left, .cart-right {
-      min-width: 0;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .cart-left {
-      flex: 1.4;
-      border-right: 1px solid var(--purple); /* вертикальна лінія */
-      box-shadow: 6px 0 14px -8px rgba(168, 85, 247, 0.8);
-    }
-    .cart-right { flex: 1; }
-    .cart-window h3 { font-size: 1.3rem; color: var(--purple); }
+.cart-window {
+  position: relative;
+  width: min(1050px, 100%);
+  height: min(600px, 92vh);
+  background: var(--bg);
+  border: 1px solid var(--purple);
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.7);
+  display: flex;
+  transform: scale(0.94);
+  transition: transform 0.25s;
+}
+.overlay.open .cart-window { transform: scale(1); }
 
-    /* Вертикальний список товарів: тільки скрол вгору-вниз */
-    .cart-list {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding: 4px 6px 4px 4px;
-    }
-    .cart-list::-webkit-scrollbar { width: 8px; }
-    .cart-list::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 4px; }
+.close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--pink);
+  font-size: 2rem;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(255, 45, 149, 0.8);
+  z-index: 2;
+}
+.close:hover { transform: scale(1.2); }
 
-    .cart-item {
-      position: relative;
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: var(--bg-panel);
-      border: 1px solid var(--purple);
-      border-radius: 14px;
-      padding: 12px 34px 12px 12px;
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
-    }
-    .cart-item .photo { flex: 0 0 70px; height: 70px; }
-    .meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
-    .meta .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .article { color: var(--muted); font-size: 0.8rem; }
+.cart-left, .cart-right {
+  min-width: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cart-left {
+  flex: 1.4;
+  border-right: 1px solid var(--purple);
+  box-shadow: 6px 0 14px -8px rgba(168, 85, 247, 0.8);
+}
+.cart-right { flex: 1; }
+.cart-window h3 { font-size: 1.3rem; color: var(--purple); }
 
-    .remove {
-      position: absolute;
-      top: 6px;
-      right: 9px;
-      background: none;
-      border: none;
-      color: var(--pink);
-      font-size: 1.1rem;
-    }
-    .remove:hover { text-shadow: 0 0 8px var(--pink); }
+.cart-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 6px 4px 4px;
+}
+.cart-list::-webkit-scrollbar { width: 8px; }
+.cart-list::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 4px; }
 
-    .qty {
-      flex: 0 0 64px;
-      width: 64px;
-      height: 64px;
-      background: #121218;
-      color: #fff;
-      border: 1px solid var(--purple);
-      border-radius: 12px;
-      font-size: 1.6rem;
-      font-weight: 700;
-      text-align: center;
-      outline: none;
-      -moz-appearance: textfield;
-    }
-    .qty::-webkit-outer-spin-button,
-    .qty::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-    .qty:focus { box-shadow: 0 0 12px rgba(168, 85, 247, 0.8); }
+.cart-item {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-panel);
+  border: 1px solid var(--purple);
+  border-radius: 14px;
+  padding: 12px 34px 12px 12px;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
+}
+.cart-item .photo { flex: 0 0 70px; height: 70px; }
+.meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.meta .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.article { color: var(--muted); font-size: 0.8rem; }
 
-    .empty { color: var(--muted); padding: 20px; text-align: center; }
+.remove {
+  position: absolute;
+  top: 6px;
+  right: 9px;
+  background: none;
+  border: none;
+  color: var(--pink);
+  font-size: 1.1rem;
+}
+.remove:hover { text-shadow: 0 0 8px var(--pink); }
 
-    .order-list {
-      flex: 1;
-      background: #121218;
-      border: 1px solid #33333f;
-      border-radius: 12px;
-      padding: 14px;
-      overflow-y: auto;
-      line-height: 1.8;
-    }
-    .order-list div {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      border-bottom: 1px dashed #33333f;
-    }
-    .order-list .empty { border: none; display: block; }
+.qty {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  background: #121218;
+  color: #fff;
+  border: 1px solid var(--purple);
+  border-radius: 12px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.qty::-webkit-outer-spin-button,
+.qty::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.qty:focus { box-shadow: 0 0 12px rgba(168, 85, 247, 0.8); }
 
-    .total { font-size: 1.2rem; font-weight: 700; }
-    .total span { color: var(--green); text-shadow: 0 0 8px rgba(43, 255, 136, 0.6); }
+.empty { color: var(--muted); padding: 20px; text-align: center; }
 
-    .checkout {
-      padding: 18px;
-      background: var(--pink);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      font-weight: 800;
-      box-shadow: 0 0 20px rgba(255, 45, 149, 0.7);
-      transition: transform 0.15s;
-    }
-    .checkout:hover { transform: scale(1.03); }
+.order-list {
+  flex: 1;
+  background: #121218;
+  border: 1px solid #33333f;
+  border-radius: 12px;
+  padding: 14px;
+  overflow-y: auto;
+  line-height: 1.8;
+}
+.order-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px dashed #33333f;
+}
+.order-list div span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.order-list div span:last-child { white-space: nowrap; }
+.order-list .empty { border: none; display: block; }
 
-    @media (max-width: 760px) {
-      .cart-window { flex-direction: column; overflow-y: auto; }
-      .cart-left { border-right: none; border-bottom: 1px solid var(--purple); flex: none; height: 360px; }
-      .cart-right { flex: none; height: 380px; }
-    }
+.total { font-size: 1.2rem; font-weight: 700; }
+.total #total { color: var(--green); text-shadow: 0 0 8px rgba(43, 255, 136, 0.6); }
 
-    /* ---------- FOOTER ---------- */
-    footer {
-      background: var(--black);
-      padding: 34px 20px;
-      text-align: center;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--purple);
-      border-top: 1px solid var(--purple);
-      box-shadow: 0 -4px 24px rgba(168, 85, 247, 0.55);
-    }
+.checkout {
+  padding: 18px;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  box-shadow: 0 0 20px rgba(255, 45, 149, 0.7);
+  transition: transform 0.15s;
+}
+.checkout:hover { transform: scale(1.03); }
+
+@media (max-width: 760px) {
+  .cart-window { flex-direction: column; overflow-y: auto; }
+  .cart-left { border-right: none; border-bottom: 1px solid var(--purple); flex: none; height: 360px; }
+  .cart-right { flex: none; height: 380px; }
+}
+
+
+/* ---------- КАТАЛОГ: ПАНЕЛЬ ФІЛЬТРІВ ---------- */
+.filters {
+  width: 310px;
+  flex: 0 0 310px;
+  align-self: flex-start;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  background: var(--bg-panel);
+  border-right: 1px solid #33333f;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.filters.hidden { display: none; }
+.filters::-webkit-scrollbar { width: 6px; }
+.filters::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+.filters-head { display: flex; align-items: center; justify-content: space-between; }
+.filters-head h3 { font-size: 1.3rem; color: var(--purple); text-shadow: 0 0 10px rgba(168, 85, 247, 0.6); }
+.reset-btn {
+  padding: 6px 12px;
+  background: transparent;
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+.reset-btn:hover { background: rgba(255, 45, 149, 0.15); box-shadow: 0 0 12px rgba(255, 45, 149, 0.6); }
+
+.filter-group h4 { margin-bottom: 10px; font-size: 1rem; }
+.price-row { display: flex; gap: 10px; }
+.price-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid #44445a;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.price-row input::-webkit-outer-spin-button,
+.price-row input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.price-row input:focus { border-color: var(--purple); box-shadow: 0 0 10px rgba(168, 85, 247, 0.6); }
+.price-row input::placeholder { color: var(--muted); }
+
+/* ---------- АКОРДЕОН ---------- */
+.acc-list { display: flex; flex-direction: column; gap: 10px; }
+
+.acc {
+  background: var(--bg);
+  border: 1px solid #33333f;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.acc.open { border-color: var(--purple); box-shadow: 0 0 12px rgba(168, 85, 247, 0.45); }
+
+.acc-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 14px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+  transition: background 0.2s;
+}
+.acc-head:hover { background: rgba(168, 85, 247, 0.1); }
+.acc-name em { font-style: normal; color: var(--muted); font-weight: 600; font-size: 0.85rem; margin-left: 4px; }
+
+/* галочка справа: у закритому стані дивиться вниз, при відкритті розвертається вгору */
+.chev {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--purple);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.3s ease;
+}
+.acc.open .chev { transform: rotate(180deg); }
+
+/* плавне розкриття вниз */
+.acc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
+.acc.open .acc-body { grid-template-rows: 1fr; }
+.acc-inner { overflow: hidden; min-height: 0; }
+.acc-pad { padding: 0 14px 12px; visibility: hidden; transition: visibility 0s 0.3s; }
+.acc.open .acc-pad { visibility: visible; transition-delay: 0s; }
+
+.sub h5 {
+  margin: 12px 0 4px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.opt:hover { background: rgba(168, 85, 247, 0.12); }
+.opt input { width: 17px; height: 17px; accent-color: var(--purple); cursor: pointer; }
+.opt em { margin-left: auto; font-style: normal; color: var(--muted); font-size: 0.8rem; }
+.opt.off { opacity: 0.4; cursor: not-allowed; }
+.opt.off input { cursor: not-allowed; }
+.opt.off:hover { background: none; }
+
+.brand-scroll { max-height: 240px; overflow-y: auto; padding-right: 4px; }
+.brand-scroll::-webkit-scrollbar { width: 6px; }
+.brand-scroll::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+/* ---------- КАТАЛОГ: ТОВАРИ ---------- */
+.catalog-title { font-size: 1.8rem; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 18px;
+}
+.grid .card { flex: none; }
+.grid .nothing { grid-column: 1 / -1; }
+
+/* режим «список» */
+.grid.list-mode { display: flex; flex-direction: column; gap: 12px; }
+.grid.list-mode .card {
+  height: auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 16px 10px 10px;
+}
+.grid.list-mode .card > * { order: 0; }
+.grid.list-mode .card .photo { flex: 0 0 90px; height: 90px; }
+.grid.list-mode .card .card-body { flex: 1; }
+.grid.list-mode .card .name { min-height: 0; font-size: 1rem; }
+.grid.list-mode .card .price { flex: 0 0 130px; text-align: right; }
+.grid.list-mode .card .rating { flex: 0 0 150px; justify-content: center; }
+.grid.list-mode .card .card-buttons { flex: 0 0 230px; }
+.grid.list-mode .card .card-buttons button { padding: 10px 6px; }
+
+
+
+
+
+
+/* =====================================================
+   БАЗА: однаковий масштаб і ширина на всіх сторінках
+   ===================================================== */
+html { overflow-y: scroll; scrollbar-gutter: stable; -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; }
+img, svg { max-width: 100%; }
+.page { flex: 1; }
+.wrap { width: 100%; max-width: 1440px; margin: 0 auto; padding-left: 28px; padding-right: 28px; }
+
+/* ---------- ВЕРХНЯ ПАНЕЛЬ: Магазин / Каталог ---------- */
+.topnav { background: #050508; border-bottom: 1px solid #1f1f2a; padding: 12px 0; }
+.topnav .wrap { display: flex; justify-content: center; gap: 14px; }
+.nav-btn {
+  min-width: 170px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  border: 1px solid #44445a;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { border-color: var(--purple); box-shadow: 0 0 16px rgba(168, 85, 247, 0.6); transform: translateY(-1px); }
+.nav-btn.active {
+  background: linear-gradient(120deg, var(--purple), var(--pink));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+}
+
+/* ---------- ШАПКА ---------- */
+header { background: var(--black); border-bottom: 1px solid #1f1f2a; }
+.header-row { display: flex; align-items: center; gap: 24px; padding-top: 14px; padding-bottom: 14px; }
+
+/* ---------- ЗАГОЛОВКИ СЕКЦІЙ ---------- */
+.section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.section-head h2 { font-size: 1.7rem; }
+.pct {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #08080c;
+  font-weight: 800;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 14px rgba(43, 255, 136, 0.7);
+}
+
+/* =====================================================
+   ГОЛОВНА: банер-слайдер
+   ===================================================== */
+.home { padding-top: 30px; padding-bottom: 50px; display: flex; flex-direction: column; gap: 46px; }
+
+.hero {
+  position: relative;
+  height: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #14101f;
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.35);
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 30px 90px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+.slide.active { opacity: 1; visibility: visible; }
+.s1 { background: linear-gradient(120deg, #2b1458, #7c2bd4 60%, #ff2d95); }
+.s2 { background: linear-gradient(120deg, #0f2a3a, #1b6b6b 55%, #2bff88); }
+.s3 { background: linear-gradient(120deg, #2a1030, #7a1f4f 55%, #a855f7); }
+
+.slide-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.slide-text h2 { font-size: 2.5rem; line-height: 1.15; color: #fff; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35); }
+.slide-text p { font-size: 1.15rem; color: rgba(255, 255, 255, 0.85); max-width: 460px; }
+.btn-primary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #fff;
+  color: #1c1c24;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 28px rgba(255, 255, 255, 0.6); }
+
+/* Сюди ставите свою картинку: замініть <svg> на <img src="..."> */
+.slide-art { flex: 0 0 46%; height: 100%; max-height: 270px; display: flex; align-items: center; justify-content: center; }
+.slide-art svg { width: 100%; height: 100%; filter: drop-shadow(0 0 18px rgba(168, 85, 247, 0.7)); }
+.slide-art img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  z-index: 2;
+  transition: background 0.2s, transform 0.15s;
+}
+.hero-arrow:hover { background: var(--purple); transform: translateY(-50%) scale(1.1); }
+.hero-prev { left: 20px; }
+.hero-next { right: 20px; }
+
+.hero-dots { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 8px; z-index: 2; }
+.hero-dots button { width: 10px; height: 10px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.4); padding: 0; transition: all 0.2s; }
+.hero-dots button.active { width: 26px; border-radius: 6px; background: #fff; }
+
+/* ---------- Категорії-слайдер ---------- */
+.cat-card {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-panel);
+  border: 1px solid var(--purple);
+  border-radius: 14px;
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.cat-card:hover { transform: translateY(-4px); box-shadow: 0 0 22px rgba(168, 85, 247, 0.8); }
+.cat-img { aspect-ratio: 1 / 1; background: #fff; border-radius: 10px; overflow: hidden; }
+.cat-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.cat-info { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.cat-name { font-weight: 800; font-size: 1.1rem; }
+.cat-info em { font-style: normal; color: var(--muted); font-size: 0.85rem; }
+
+/* =====================================================
+   КАРТКА: акційна ціна, короткі характеристики
+   ===================================================== */
+.card { height: 470px; }
+.photo { position: relative; }
+.badge-sale {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+  padding: 3px 9px;
+  background: var(--pink);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.8);
+}
+.card .type {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  line-height: 1.3;
+}
+.price-box { display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; min-height: 2.9em; }
+.card .price-box { order: 4; }
+.old-price { color: var(--muted); font-size: 0.85rem; text-decoration: line-through; }
+.old-price:empty { display: none; }
+.price-box.sale .price { color: var(--pink); text-shadow: 0 0 10px rgba(255, 45, 149, 0.7); }
+.product-info .old-price { font-size: 1.1rem; }
+
+/* =====================================================
+   КАТАЛОГ: дві колонки
+   ===================================================== */
+.catalog { display: flex; align-items: flex-start; gap: 28px; padding-top: 28px; padding-bottom: 50px; }
+.filters {
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  border: 1px solid #33333f;
+  border-radius: 16px;
+}
+.f-block h4 { margin-bottom: 10px; font-size: 1rem; }
+.catalog-content { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.catalog-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 16px; }
+.catalog-title { font-size: 1.8rem; }
+.grid .card { height: 470px; }
+.grid.list-mode .card { height: auto; }
+.grid.list-mode .card .price-box { flex: 0 0 140px; align-items: flex-end; text-align: right; }
+
+/* =====================================================
+   ПІДВАЛ
+   ===================================================== */
+footer {
+  padding: 0;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  background: var(--black);
+  color: var(--text);
+  border-top: 1px solid var(--purple);
+  box-shadow: 0 -4px 24px rgba(168, 85, 247, 0.55);
+}
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; padding-top: 34px; padding-bottom: 24px; }
+footer h4 { margin-bottom: 12px; color: var(--purple); font-size: 1.1rem; text-shadow: 0 0 10px rgba(168, 85, 247, 0.6); }
+footer p, footer .contact a { margin-bottom: 8px; color: var(--muted); text-decoration: none; display: block; }
+.socials { display: flex; flex-wrap: wrap; gap: 10px; }
+.socials a {
+  padding: 8px 14px;
+  border: 1px solid #33333f;
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.socials a:hover { border-color: var(--purple); box-shadow: 0 0 12px rgba(168, 85, 247, 0.6); }
+.copyright { border-top: 1px solid #1f1f2a; text-align: center; color: var(--muted); padding: 16px 28px; font-size: 0.9rem; }
+
+/* =====================================================
+   АДАПТИВ (однаково для обох сторінок)
+   ===================================================== */
+@media (max-width: 900px) {
+  .header-row { flex-wrap: wrap; gap: 14px; }
+  .search { order: 5; flex: 1 0 100%; }
+  .catalog { flex-direction: column; align-items: stretch; }
+  .filters { width: auto; flex: none; position: static; max-height: none; }
+  .slide { padding: 24px 70px; }
+  .slide-art { display: none; }
+  .slide-text h2 { font-size: 1.9rem; }
+  .grid.list-mode .card { flex-wrap: wrap; }
+  .grid.list-mode .card .card-buttons { flex: 1 0 100%; }
+}
+@media (max-width: 520px) {
+  .wrap { padding-left: 16px; padding-right: 16px; }
+  .nav-btn { min-width: 0; flex: 1; padding: 12px 10px; }
+  .user .avatar, .user .balance { display: none; }
+  .hero { height: 400px; }
+  .slide { padding: 24px 50px; }
+  .hero-prev { left: 8px; }
+  .hero-next { right: 8px; }
+}
+
+
   </style>
 </head>
-<body>
+<body data-page="home">
 
+  <!-- Малюнок ігрового сетапу (використовується у банері) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="scr" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#a855f7"/><stop offset="1" stop-color="#ff2d95"/>
+      </linearGradient>
+    </defs>
+    <symbol id="setup-art" viewBox="0 0 400 260">
+      <rect x="95" y="25" width="210" height="130" rx="10" fill="#101017" stroke="#a855f7" stroke-width="4"/>
+      <rect x="106" y="36" width="188" height="108" rx="4" fill="url(#scr)" opacity="0.9"/>
+      <path d="M118 144 L160 92 L190 122 L228 76 L282 144 Z" fill="#101017" opacity="0.55"/>
+      <circle cx="262" cy="64" r="11" fill="#fff" opacity="0.85"/>
+      <path d="M200 155v28M163 187h74" stroke="#a855f7" stroke-width="5" stroke-linecap="round"/>
+      <rect x="62" y="200" width="176" height="38" rx="6" fill="#101017" stroke="#2bff88" stroke-width="3"/>
+      <path d="M74 212h152M74 226h152" stroke="#2bff88" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>
+      <rect x="262" y="196" width="36" height="52" rx="18" fill="#101017" stroke="#ff2d95" stroke-width="3"/>
+      <path d="M280 196v20" stroke="#ff2d95" stroke-width="3" stroke-linecap="round"/>
+      <path d="M322 118a30 30 0 0 1 60 0" fill="none" stroke="#a855f7" stroke-width="6" stroke-linecap="round"/>
+      <rect x="314" y="116" width="14" height="30" rx="6" fill="#a855f7"/>
+      <rect x="376" y="116" width="14" height="30" rx="6" fill="#a855f7"/>
+    </symbol>
+  </svg>
+
+  <!-- Верхня панель: переходи між сторінками -->
+  <div class="topnav">
+    <div class="wrap">
+      <a class="nav-btn active" href="index.html" data-i18n="nav_shop"></a>
+      <a class="nav-btn" href="catalog.html" data-i18n="nav_catalog"></a>
+    </div>
+  </div>
+
+  <!-- Шапка: логотип, пошук, мова, кошик -->
   <header>
-    <div class="logo">LOGO</div>
-    <input class="search" type="text" placeholder="Пошук...">
-    <div class="lang"><b>UA</b> / EN</div>
-    <div class="user">
-      <button class="cart" id="cartBtn" aria-label="Кошик">🛒<span class="cart-count" id="cartCount"></span></button>
-      <span>Steve</span>
-      <div class="avatar"></div>
-      <span class="balance">1250 грн</span>
+    <div class="wrap header-row">
+      <a class="logo" href="index.html">CYBER GEAR</a>
+      <input class="search" id="search" type="text" data-i18n-ph="search_ph" autocomplete="off">
+      <button class="lang" id="langBtn" type="button"><span data-l="uk" class="on">UA</span> / <span data-l="en">EN</span></button>
+      <div class="user">
+        <button class="cart" id="cartBtn" data-i18n-title="cart_title">🛒<span class="cart-count" id="cartCount"></span></button>
+        <span>Steve</span>
+        <div class="avatar"></div>
+        <span class="balance" id="balance"></span>
+      </div>
     </div>
   </header>
 
-  <div class="middle">
-    <aside>
-      <div class="categories" id="categories">
-        <h3>Категорії</h3>
-        <button data-cat="mice">Миші</button>
-        <button data-cat="keyboards">Клавіатури</button>
-        <button data-cat="monitors">Монітори</button>
-        <button data-cat="mics">Мікрофони</button>
-      </div>
-      <div class="ad">
-        <h3>Реклама</h3>
-        <p>Тут розміщується рекламний текст, який може бути дуже довгим, і якщо він не поміститься в блок, то автоматично обріжеться з трьома крапками в кінці рядка.</p>
-      </div>
-    </aside>
+  <main class="page">
+    <div class="wrap home">
 
-    <main>
-      <div class="banner">
-        <button class="arrow">‹</button>
-        <h2>Новорічний розпродаж</h2>
-        <button class="arrow">›</button>
-      </div>
+      <!-- 1. Банер-слайдер -->
+      <section class="hero">
+        <div class="slide s1">
+          <div class="slide-text">
+            <h2 data-i18n="s1_t"></h2>
+            <p data-i18n="s1_p"></p>
+            <a class="btn-primary" href="catalog.html" data-i18n="to_catalog"></a>
+          </div>
+          <!-- Замініть <svg> на свою картинку: <img src="my-setup.jpg" alt=""> -->
+          <div class="slide-art"><svg viewBox="0 0 400 260"><use href="#setup-art"/></svg></div>
+        </div>
+        <div class="slide s2">
+          <div class="slide-text">
+            <h2 data-i18n="s2_t"></h2>
+            <p data-i18n="s2_p"></p>
+            <a class="btn-primary" href="catalog.html" data-i18n="to_catalog"></a>
+          </div>
+          <!-- Замініть <svg> на свою картинку: <img src="my-setup.jpg" alt=""> -->
+          <div class="slide-art"><svg viewBox="0 0 400 260"><use href="#setup-art"/></svg></div>
+        </div>
+        <div class="slide s3">
+          <div class="slide-text">
+            <h2 data-i18n="s3_t"></h2>
+            <p data-i18n="s3_p"></p>
+            <a class="btn-primary" href="catalog.html" data-i18n="to_catalog"></a>
+          </div>
+          <!-- Замініть <svg> на свою картинку: <img src="my-setup.jpg" alt=""> -->
+          <div class="slide-art"><svg viewBox="0 0 400 260"><use href="#setup-art"/></svg></div>
+        </div>
+        <button class="hero-arrow hero-prev" id="heroPrev" type="button" aria-label="Previous">‹</button>
+        <button class="hero-arrow hero-next" id="heroNext" type="button" aria-label="Next">›</button>
+        <div class="hero-dots" id="heroDots"></div>
+      </section>
 
-      <section class="block">
-        <h2><span class="block-title">Sales</span><small class="tag block-tag"></small></h2>
+      <!-- 2. Акції / Суперціна -->
+      <section class="promo">
+        <div class="section-head">
+          <span class="pct">%</span>
+          <h2 data-i18n="promo_title"></h2>
+        </div>
+        <div class="grid" id="promoGrid"></div>
+      </section>
+
+      <!-- 3. Популярні категорії (слайдер) -->
+      <section class="popular">
+        <div class="section-head">
+          <h2 data-i18n="popular_cats"></h2>
+        </div>
         <div class="row">
-          <button class="arrow slide-arrow" data-dir="-1">‹</button>
-          <div class="cards" id="cardsSales"></div>
-          <button class="arrow slide-arrow" data-dir="1">›</button>
+          <button class="arrow slide-arrow" data-dir="-1" aria-label="Previous">‹</button>
+          <div class="cards" id="catCards"></div>
+          <button class="arrow slide-arrow" data-dir="1" aria-label="Next">›</button>
         </div>
       </section>
 
-      <section class="block">
-        <h2><span class="block-title">New products</span><small class="tag block-tag"></small></h2>
-        <div class="row">
-          <button class="arrow slide-arrow" data-dir="-1">‹</button>
-          <div class="cards" id="cardsNew"></div>
-          <button class="arrow slide-arrow" data-dir="1">›</button>
-        </div>
-      </section>
+    </div>
+  </main>
 
-      <div class="discount">
-        <div class="prices">
-          <span class="new-price">150.0</span>
-          <span class="old-price">106.8</span>
-        </div>
-        <div class="percent">%</div>
-        <span>Звичайна ціна</span>
+  <!-- Підвал: соцмережі, контакти, копірайт (замініть посилання на свої) -->
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h4>CYBER GEAR</h4>
+        <p data-i18n="f_about"></p>
       </div>
-    </main>
-  </div>
-
-  <footer>FOOTER</footer>
+      <div>
+        <h4 data-i18n="f_social"></h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">Telegram</a>
+          <a href="#">YouTube</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+      <div class="contact">
+        <h4 data-i18n="f_contacts"></h4>
+        <a href="tel:+380000000000">📞 +380 00 000 00 00</a>
+        <a href="mailto:info@cybergear.example">✉ info@cybergear.example</a>
+        <p>📍 Україна</p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 CYBER GEAR. <span data-i18n="f_rights"></span></div>
+  </footer>
 
   <!-- Вікно кошика -->
   <div class="overlay" id="overlay">
     <div class="cart-window">
-      <button class="close" id="closeCart" aria-label="Закрити">✕</button>
+      <button class="close" id="closeCart" aria-label="Close">✕</button>
 
       <div class="cart-left">
-        <h3>Кошик</h3>
+        <h3 data-i18n="cart"></h3>
         <div class="cart-list" id="cartList"></div>
       </div>
 
       <div class="cart-right">
-        <h3>Список товарів</h3>
+        <h3 data-i18n="product_list"></h3>
         <div class="order-list" id="orderList"></div>
-        <div class="total">Сума замовлення: <span id="total">0 грн</span></div>
-        <button class="checkout">Оформити замовлення</button>
+        <div class="total"><span data-i18n="total_label"></span> <span id="total"></span></div>
+        <button class="checkout" data-i18n="checkout"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Вікно «Про товар» -->
+  <div class="overlay" id="productOverlay">
+    <div class="product-window">
+      <button class="close" id="closeProduct" aria-label="Close">✕</button>
+      <div class="product-photo"><img id="pImg" alt=""></div>
+      <div class="product-info">
+        <h3 id="pName"></h3>
+        <span class="type" id="pType"></span>
+        <div class="rating" id="pRating"></div>
+        <div class="p-meta"><span id="pBrand"></span><span id="pArt"></span></div>
+        <span class="old-price" id="pOld"></span>
+        <span class="price" id="pPrice"></span>
+        <button class="btn-buy" id="pBuy" type="button"></button>
       </div>
     </div>
   </div>
 
   <script>
-    /* ===== Дані ===== */
-    const CATS = {
-      default:   { title: null,         item: 'Товар',      base: 100,  code: 'T' },
-      mice:      { title: 'Миші',       item: 'Миша',       base: 450,  code: 'M' },
-      keyboards: { title: 'Клавіатури', item: 'Клавіатура', base: 1200, code: 'K' },
-      monitors:  { title: 'Монітори',   item: 'Монітор',    base: 6500, code: 'D' },
-      mics:      { title: 'Мікрофони',  item: 'Мікрофон',   base: 1800, code: 'C' }
-    };
-    const SECTIONS = [
-      { key: 'sales', label: 'Sales',        el: document.getElementById('cardsSales'), offset: 0 },
-      { key: 'new',   label: 'New products', el: document.getElementById('cardsNew'),   offset: 6 }
-    ];
-    const cart = new Map(); // id -> {id, name, art, price, qty}
+/* =====================================================
+   БАЗИ ДАНИХ ТОВАРІВ  (72 товари)
+   P(назва, ціна в грн, [посилання на фото])
+   Без третього параметра ставиться малюнок на білому фоні (мишка / клавіатура / мікрофон / монітор + назва).
+   Щоб додати реальне фото — вставте пряме посилання третім аргументом.
+   ===================================================== */
+const P = (name, price, img) => ({ name, price, img: img || null });
 
-    /* ===== Товари на сайті ===== */
-    function renderProducts(catKey) {
-      const cat = CATS[catKey];
-      SECTIONS.forEach((sec, si) => {
-        let html = '';
-        for (let i = 1; i <= 6; i++) {
-          const n = i + sec.offset;
-          const id = `${catKey}-${sec.key}-${i}`;
-          const name = `${cat.item} ${n}`;
-          const art = `${cat.code}-${sec.key === 'sales' ? 'S' : 'N'}${100 + i}`;
-          const price = Math.round(cat.base * (1 + 0.1 * n) / 10) * 10;
-          html += `
-            <div class="card" data-id="${id}" data-name="${name}" data-art="${art}" data-price="${price}">
-              <div class="photo"></div>
-              <div class="card-buttons">
-                <button class="btn-info">Про товар</button>
-                <button class="btn-buy">У кошик</button>
-              </div>
-              <div class="card-info"><span class="name">${name}</span><span class="price">${price} грн</span></div>
-            </div>`;
-        }
-        sec.el.innerHTML = html;
-        sec.el.scrollLeft = 0;
+// 1) 24 ігрові миші
+const MICE = [
+  P('Razer DeathAdder V3 (дротова)', 2299, 'https://images.openai.com/static-rsc-4/S0lpcEbYEHDGzWe3kSYRDNNtQA4Y7iHrnRUq8gEiX2ZVzkQYknb727neZSoID967QJTG_TPeoegGZPd0pTGEbcm0TYjWN1ZFHFXLlTzzZyiLWo-LI4n7SSXhYWndAnvamoJ7oZX9Q8jBVxuxsh_a3qANVI9QWHBe8OzStrrWnCzaJwwcZG1pqG8HzRVIUoc9?purpose=fullsize'),
+  P('Razer DeathAdder V3 Pro', 5199, 'https://images.openai.com/static-rsc-4/Tm4jOHzjUkaPyXn2XPxTazzA6bN8kF-gVNp_CL96UXu-Mf-E4OXmHHNwFMhz5nEcORQ3Pi5VuygXWIxe3WG6rQnnOmheZi9Oh761k3kTYlOWJ2E2ptr2iB1Sg4YrpUU9NQzs7x-v4tOfzq3qmpkI9EI9-DrzgtmxGqAYCOdriyqb353nF77RfC_kii4mnFTD?purpose=fullsize'),
+  P('Razer Viper V3 Pro', 5999, 'https://images.openai.com/static-rsc-4/Wa6-VdL9HQ2z-TzK_7Jbp_vuP84ROpP6DWvV4XX0bqHaw05J--cFfiFyyjH1n9ot_sQw-pATdrnMpT0kDLtbuXwUP1p4EoAgWtcE8zVlv3IS7zlOY26kRTosoC8JCHnE6WtUbP-sfzBYiltB_ryPCYNdTMEN3kJRvlXn_HOzYlZnkhgkZsLfbQilH_GakN3I?purpose=fullsize'),
+  P('Razer Basilisk V3', 2099, 'https://images.openai.com/static-rsc-4/ep5VhKfoZYf4YZfbNgjfP7pz4hSywha4ETWkhAcFJLl22BbhfmncTNrwA8zfcebi8wxJG89OK_VU6lKvuLiWH7Z_2FUhk4t8YA4o4EpGYRtKbWyqWH6k82K3HgVYl5LaoSd1n9z8r-rY0VD0dpTuzbRNrN_5skfHeYDhFIZONlA-hytKZw-brxnDSsYT7S8O?purpose=fullsize'),
+  P('Razer Cobra', 1699, 'https://images.openai.com/static-rsc-4/mRAl_qhuCdckSv8r68vfWbCl2amxvR-3q2wYQZvDJhMoxdK960Xqxiqe-Kq059L-A_pU7PdSXSbTr4posyhGM2GacVEUCv04ZPZQv1zjthEmlygNSPVBLbdt3g87k-xrB14JiUT3Cd5huvx4PhMPUBw3eLJMMCWeqNAEpMmC7I85f5g1j1sNLEAm_vi2jwtl?purpose=fullsize'),
+  P('Logitech G Pro X Superlight 2', 5499, 'https://images.openai.com/static-rsc-4/JA6y3uMWkgKPBB0hpBcSkwD-CR2Q0_gVMA6E1UcGJqKqWz7IBQBP-v9K5UZl3yS6tWPnimiHZB6umHY9jrKs9hCTOw1ws0BEsUIbXEBRzt6N-Slby7bev3wAdIrmn4KRt32qsGehNt-AXnde62AJ6eBRoCyirQeG21pCOojdVrBE8EO3-kTQhhfJyijSZFq7?purpose=fullsize'),
+  P('Logitech G502 X Plus', 4999, 'https://images.openai.com/static-rsc-4/waU2GZJJlly6eOGwzKtn2XSFyoS7c8-wlafRvUuVp904dFhGl_wVLSkuPx51I0Oh2qleF1Hx2T2fNCifav1i53UY1pDwyIvCtUkuw-WmOJnTXd2AiTkLU0CCJQals6ofmMIWYIe9KPgrZCUuit3YIyo4skPVJRDox_2YAi75kde9quP_U4ZXyCLei-5A1AfI?purpose=fullsize'),
+  P('Logitech G305 Lightspeed', 1599, 'https://images.openai.com/static-rsc-4/HCK6u3FsAtPvvhBw3nQGTTqFe4VV1pi4a3rctXfZjbdOgMPFpmJNryYhcnaWJilWEejl9p_xXL4UCV--fDs_N054q2Z807dcu1Stu6YOYLONCATW0yNKIfN20TfNmHS4tdJ8lFomCh-21RgDn_UkZe-xt1XV5qbOtNuf-elvxp_q_tY228bNoFvSvDQ8pkqg?purpose=fullsize'),
+  P('Logitech G102 Lightsync', 799, 'https://images.openai.com/static-rsc-4/4BvlDR3G5_fYiZFbmmMY-7IGa0YOkcGDmhZgxRBaPC9kxseL9y9YHGhaR-fo0-TmWBmNBH7n9crjC-nGVFUXW4xGXy2Zfr6ZqKbhVgTXE5_rJZ51GN8TlP5J00gfXCM4kroj79pNEqtLkS8UlGIDB2xiSMhrVbO8Bd8gsOt0ZyByl6TqX6Vu-pHySodmI9hZ?purpose=fullsize'),
+  P('Lamzu Atlantis Mini', 3499, 'https://images.openai.com/static-rsc-4/xKgiuS2Kztqj-qmhicbkUmt7DBTZd5oPXaTEP3FavN-k37xoJ-_4KijjXuptKP4Nilt24cgJwJHgLrVI7ZU5OuM1H-hnW1c_AyVBDcQXhq3rhOOq3HadBf3p0qIxr5hOMuAlBDPJiX-pmabo69iNN4yfGWuxZRVqFMIoi9bFVVS8LWbKarFZrvVR1YbGsEFR?purpose=fullsize'),
+  P('Lamzu Maya', 3599, 'https://images.openai.com/static-rsc-4/j1O70IANCepVSFquKS2IR6czgGVSHIs5X3ue8XF2wcu98z-FdAhQ5rflZ8FS4f1XiYFfx6NgOeIQXktq1ngKs5jmkuQZ87dqzNUy34Znzwnm34r_I1Tt9Auf8uDrJaURFnv3tKd3KdnUdft3SFhXsten0r2BHDyZEq0gqLHp73m48UYFn0On_-FtyiH8hNMH?purpose=fullsize'),
+  P('Lamzu Thorn', 3399, 'https://images.openai.com/static-rsc-4/9haRj_HXKdI5AXZvk7HlgNnrBqqWJXtND5sMjaTas_qL6T9SxuHyXuPsUexnHsTGQsbpnkH_n8fdGOZ77_3czQ3bbW-sk68MswIDfgL4zk5ag__q0vv0EkKQdcAuezDkPpsyAYcPTu64CNBs-QIoh_9Hz_eVhRYgKSrgxm16kqOWkNxduWZZzhEC1ANsv3WN?purpose=fullsize'),
+  P('ASUS ROG Gladius III', 2799, 'https://images.openai.com/static-rsc-4/54ITTC-6ordbR_G5qi9q9FJshAIURaAEjqTRX9dqIvr9q52OCaJ9mTYidmd4Ud9L-7lsiMsZ_6Cf5pdQ_z_qqppDZnRWM2ooF9kn6BmXeY45G42TaEI86iBntrE0wygP77Va5PGj3WKE_9k0Lxbt9CwIpADgRSAlz3oA1OLrACWjqD1tHsxS3RTK5sWmmjil?purpose=fullsize'),
+  P('ASUS ROG Keris Wireless AimPoint', 3199, 'https://images.openai.com/static-rsc-4/TCmuPhqRIgzAjRuPlkTxZpxffzatDwImzl6YLttzRhUf7CXUu2j0gj6rkvWg_dq8He_7yOPjHpIhjs4zMZ1hlh80DRCxJiU7q4CrR67AquVfuqXawL5cRajTupItyKsF-_GU2n-chsbIASo9E1W8ub7dlhtMBjUnIHH_FAhCHAejv7vIHtlp2cTYLUYva2uC?purpose=fullsize'),
+  P('ASUS ROG Harpe Ace Aim Lab Edition', 4699, 'https://images.openai.com/static-rsc-4/2qc3mnGkRFXNQgRNnxE2Fh8tXUy-exGpIKcOtKEgh9_CBrsRO6WyL5a-Ajx9MpWA8_u3t-3z17WUXOq8sROTDEuAvep57vIT6tzR19Z5Db33tcWdvsNUYgccPM_fxqF9SkiDK8yPqEG8ue5R2ybrpDxB3KEFQ4MrBeHWtmIoXNA4v9reo2fCcdbhlJntodOT?purpose=fullsize'),
+  P('SteelSeries Aerox 5 Wireless', 3999, 'https://images.openai.com/static-rsc-4/JzxBqyBq-qPR0oRDXvtat0RZ10PjZyQY6WUdTlk_C_afCLDLCS-P5VguQX2CI4NAd0YHiZQqu2xtylVVYQebqOEoHTuf_N1yNJWOtw3nKvPbCGcrkh9RHRZHvVFsjTQoqzqfXrBtXnkC52zpM1AmIfXKmda5o6J7zdyfEZsIRS6Elb65BQMoGrIP04dUQHYi?purpose=fullsize'),
+  P('SteelSeries Rival 3', 1099, 'https://images.openai.com/static-rsc-4/EACupdJFTYudDD_SxQN27_vbXEBtEMFONXs9s7zyOyCSC7ZwgqxgyVWJALMQyKQXeEeMJUfkYvi2DUFoZTAgiroGM3iNGh5ac7XulP-2gSNQQxoUIpn2PQfLs3-hE9ot83Uv9JQcqzWD5y1nIWSrRmmt1ZVqoBczi_bhu88mm53eAVojCNzYmn7SZP7r72jX?purpose=fullsize'),
+  P('ZOWIE EC2-C', 2499, 'https://images.openai.com/static-rsc-4/WVoTXeFBmJoqIwKdvSEPbVF4_hmvymTdIpnp7Afc0Es9kLgLxBdYSTYfzjsEKvDuVkOw3qf2qsXrWgtdYOEB9FhiFtvEULTI1IowZ6w4I0cuPzhcpmX1UNG4DTBMa-W1YcZ6bADwpHLLdYU-nXb2G3sBhySuy44yhXfjpLWGJ3JbbdU7e6kA6oIKSv3qQIvH?purpose=fullsize'),
+  P('Glorious Model O 2 Wireless', 3799, 'https://images.openai.com/static-rsc-4/BHgj7gqHx1XlS67-KzvTV0kb0YAnxwHCISU5Qx1tu8owSGCYya346dwU3iobfDKbaXQkvMv_0vb4Lcf8dEdCQ65N-DGRXLQ4DxU1r2PVpSa-0LJOCYJ42-PbruSzpbqDEitxAepuWM-pt0pcs_LZprsNWR0UcHUBZjOp5Xm6bavGfwQBkF9BUIgG9AtrQHX2?purpose=fullsize'),
+  P('Pulsar X2 V2', 3699, 'https://images.openai.com/static-rsc-4/I2W7TFDzY3R3sFsozsc7IcGPlG9hUJlgyj5GanUVbepQs3Sv71IuENVt01j8GKjU0j6ofDb1F-ZzqsB_7iX0W0_RXt8QT1UciAnU0bmq2u3KQTj7xaIcCBk4fbnjg-XyGUl6x52_FbgGIQN1NhQEpuQ4aFWIrKFLk6OGN4mPwzvVlkj6oTcPtK9e7HZh_qlN?purpose=fullsize'),
+  P('HyperX Pulsefire Haste 2 Wireless', 2999, 'https://images.openai.com/static-rsc-4/5Z20ugEgYZp1dFkkMhiUq03RHDdH5jLcGU5LMOevQFANlDCzUD0w7v21LJXfOGLSnCWPXhrZYJXKQ_6icXG_dMTkos2T9FAVu3mFdSKT3nd88ScXbffJPrsnAgqaVX_SoIix4zfAK27UaHccSOx5yaKC-6t4Waq4iG54dDIe5EBkxAT_W4evly8awSg10mSN?purpose=fullsize'),
+  P('Corsair M75 Air Wireless', 4299, 'https://images.openai.com/static-rsc-4/3hIh38IgZrz7bDYBY6s-V2PS6MZYgANTe0j4Ji6OpNMQXOu6RxGCKXxYDpJIUaEoRrmx2c4-hYy242jLeMJanKkYSNVjhaPpZsRtr8b2LiUQIY5y_46sk41KP85tqaWKIk1sLFtR13iusw6S3d_TJBshyHXRYa2rksaV42iN_5rxDELFodfVEUu3a8Itysgu?purpose=fullsize'),
+  P('Endgame Gear XM2we', 3999, 'https://images.openai.com/static-rsc-4/PhhZz76O4tG86wrhWB4CfOzjGOuersQs3-ONU9HZy9v-tCd43eScBW9PwglfuJeJrNYilCB5RNyg3avHgCG_9MjPlvkCjRG5QfxMkAYa6hSF5Hy9T-xkZmTvyvsQ1P5gYAOpX0T5H5LSIuQuomeaMeXrprT0zAAoRjGS1UPAjlpaXVOCkNGzrm1bOy9vTiH2?purpose=fullsize'),
+  P('Redragon Cobra M711', 649, 'https://images.openai.com/static-rsc-4/LTuQzYrT3FFivsxvTlHjx7xkrLWhrGo3ozDQ0yxknLAEDQ319Skw4dFg4owNiLqv8QqNc_SFhloV5lSmrqUmyVnDVldcipdq6YcYEBdCceqAL7FZ2uc0hY2SuotnZzFDhunjoKoEbZ9biqrf4ywHi2IhupWNJ5oFcqqSM5WOimLGHtbVPR_552uRqQJBnoGu?purpose=fullsize')
+];
 
-        const block = sec.el.closest('.block');
-        block.querySelector('.block-title').textContent = cat.title || sec.label;
-        block.querySelector('.block-tag').textContent = cat.title ? sec.label : '';
-      });
+// 2) 24 клавіатури
+const KEYBOARDS = [
+  P('Wooting 60HE', 7299, 'https://images.openai.com/static-rsc-4/pV-7Z-tuSPlJCxOUdA_8p-qfJK_ZVHL9Wy-7OznuxI7BmaPO2AYazx4DEEp1MVf_s_EJbUCDq3Qp2PwWhA7R50I224T3Ma4wd1T9fmOQYnE2JSwQRsXBcedzp-k795HrCE54PVRvFlo-k2d5PFPxT7-eGrJPvygalz-UE49qBBsBE9r0nOLc2B5Lkl61jfH8?purpose=fullsize'),
+  P('Wooting 80HE', 8499, 'https://images.openai.com/static-rsc-4/-4S0bchqK_p3JNKEXuEfLc1JUcrd1IpmjvaELTvmUoev8scYddX2WdGHFgZCCgGk_j79KW0kVBySW1IlCHZPXDsm0r7q7LWnumYjsSRKvJ00tL2XfyYdfvy6yZHRH5GBP_XY51i6ROKpLjoz-VJMHO4I01C7mknH9xXr3pxotQOSBaabWFsqE-apiICz_XCm?purpose=fullsize'),
+  P('Wooting Two HE', 9999, 'https://images.openai.com/static-rsc-4/hnJo79h_lfQjhOkDluZ8kO_2PYniaZDQQA_wxSHG2xxtBxEpmulutO4-j382VT3eljmTq5EZo99dmfpAJGP5y9oKW00ZO7Wsc_d75RjYjmSjiQixVmCfUBZ8Y3yd1WzF8bPK6rvz0WGccKA0ClGoZa0gBB0Q9iXPz2lbakEVuJXNNwYPD1Atrj6Jri_gC4T5?purpose=fullsize'),
+  P('HyperX Alloy Origins Core', 2999, 'https://images.openai.com/static-rsc-4/GCFFjy1zQgwttCBDA3wzRj4hzCbnX_mFeioskCL8Q6e55FcMVzVTVkHin3QiTF4gnCPOsbKBYSXdryg2n2Becutx6b0-o--8z2j3LSHSFNIUdKa_diSdLb8hFLYwn5eA75wYkkbrAL46otOguPcj4HuGS5Yq58ZZPG6SUa2LMolR5RS-T11IoAZLMLamS78P?purpose=fullsize'),
+  P('HyperX Alloy Origins 65', 3699, 'https://images.openai.com/static-rsc-4/ytqbj8ghk18YIYqpbVkTN39RL4Poc3VBz0zevPjP1cMzS0LPEFjXsPFDfQr8lWNu3GrOiSAVI_bbeH5QTFNpNRXHskvqAlTMqQcHWyVLK60eFeiQhMEsb1N1NxNjsqKGb2CPFWDu5iCg9xhP0mWn4VGZjBvcHu-dLmswFvIjaO9httCgbYumsgNMvLBlg6-S?purpose=fullsize'),
+  P('HyperX Alloy Rise 75', 3899, 'https://images.openai.com/static-rsc-4/X3TPIaWk1XPJrxVVFCwUttFEs5bbh2lSdOwbmOGAxwlnd-6BtX6i5PgxaEtRRhoq2J40IAVjCmYOKgc1P1Tb0yjEp5mXWsOZtXy4jVobPCR9NO_HwsKXXNtwOAZUPLVSLHp5aZ36GEgePRJGZunBoM29-lp8wciJMRU89TQZ6LyhTKdnGtSB8-svWCJz2c8P?purpose=fullsize'),
+  P('Dark Project KD87A', 3199, 'https://images.openai.com/static-rsc-4/qDc1pYmJp-AsC6VpSr-RjXDM8kEjar7VWOJQlli9y6E90WtjYuTmOvicl3EQaXpsmdMV-vpMvyQ2S0KjXY94UWF_FVEpoZpbeNk8Z4vHMTNqJojWQ30kYxuF2ZKjJES2-lPjBOej8kREBPnDajr1lENnkSF1tgtq38X_3yq2dI7tKQZiEol-wNYjH_4Llg0R?purpose=fullsize'),
+  P('Dark Project KD83A', 2999, 'https://images.openai.com/static-rsc-4/_u8L9sOtCnZtL-Vsqm-Sa72XvY5W8ZMe1mzVxNQTPG5UL9lqIWm8HCswAXWwRUTWYu6H0gQ4zEy4EDpi5K2VLMnWJQqdwaNwMPI_HTGCbgl9KLXzO9MOYFZk9RMO27nx-kosR-NwryK9HYlejFSp6_aaPJNVj6roJmjGX38KVdS28nWqQ1LXg5i3nIrKheVn?purpose=fullsize'),
+  P('Dark Project KD3B', 2799, 'https://images.openai.com/static-rsc-4/8GvfTyYeGPP9HeqMARlqIv0e7JdSvoAqAFPVG54rPm9Gi6GZ6ws97yvDgkJD7ckvpOjfBfYEx1wy3r0h3g4aS1fo1Cd3knUjVtRW9tAV5DkgQxxQBwxLvJoPrfXIAWj8HIWCvYGTAAdPHnRDhAy2FCqgUbQ6vRBeYj-u1a7tOyNBcEdKCBWAUY1Xwc1fzjlU?purpose=fullsize'),
+  P('Keychron Q1 Pro (Custom)', 7999, 'https://images.openai.com/static-rsc-4/h_P_GkuEVCwZ_hXYq18T9Y51f8rquv6IQuhcOGcMcHxOAzkKB1YvXAybDEjxer-EtWKxQsS4_aVWOJcfEE1mYpLgumQo5MMyp9vZD-br9Vq8l01NG_riymfOP7Ob2xVqO5Ga4hbRBYSCEeWDb7ZGmVZt-9A1vANiZ4aqv3XD_FtPegnDs5677L65wuSRlL1D?purpose=fullsize'),
+  P('Keychron Q3 Max (Custom)', 8499, 'https://images.openai.com/static-rsc-4/6ifyu7m1mHOW8eyNPqL3SzKKBSRBSFB5EHL4VrvcgBMTePA39h84ee_Fl5eJb5LL5wNFBHfMcKucs5TyJ8PX31syWPYIUEeyhowRXfm1i9POPU0N0-6ClTqzcYKtHlrgWEiyjlduYkFrAWBKPcwnGFL8r_OVXUkvargSoPajUVWnhgBV2ptHpHPwbPr1dqMi?purpose=fullsize'),
+  P('Keychron K2 Pro', 3499, 'https://images.openai.com/static-rsc-4/PVUvXtvFX01OaBVBHVOL8Z1ipHfZinJxDPYmjhSHNyx2LT1Hn5iUsJZT1NUxWsDM9rjwG5OE-iVBDg4ioFv2-2xANp__gguIA1AIWWaI5Pq__pok_bnz0bs-VNBFVJAHM2Fs5s5Lzd3-fSw6TYCVG7gJ41wW4Cci-jddjFqAG3TBKF7yk2Ao2-hPywBUe4qL?purpose=fullsize'),
+  P('Akko 5075B Plus', 2999, 'https://images.openai.com/static-rsc-4/BA2ArTV8shG-UeKoGyZCSH_2PbHBZECEojt6rTZ45wrEgU9vaXU-nS42FOWAvLMBREQRSFNPPT9MKAFpaSJerpniJ84801XksoGDUJv5qiNO3WnFW71Qn47_Wwl1VuIuiXPoCOHAbh9Fbivlac0HU4rIKsQTgL9QVVqmChQ6JClb-6RyDao6e2EMOY1xBe3U?purpose=fullsize'),
+  P('GMK67 (Custom)', 2199, 'https://images.openai.com/static-rsc-4/DjnIhRKaoZwSChDzkxyhEQMuBkZGvA634K3nv9jqmr17iHDGcOcYMH9sAXNztyWsAq0Y0funZhpTjbNmZXsoKCEg8inPhWlULiH-yz4p-yzfnZZz6C0uYzuIYBdSIsfQJER5ETENKSi8tvbWwLhhYJxcKKI-Rkpxn756yx6HQ47aEUqFa0FpD1NP_YiRyTFS?purpose=fullsize'),
+  P('Epomaker TH80 Pro (Custom)', 2899, 'https://images.openai.com/static-rsc-4/Vo-7CJRYcUutP35p333YuM_tpoOxb2SCXFPRWkFpPESTawUhTVb-RwQ8vaXOzfqK8EsNIdxeNpzeFijB5mxg_ZrugQ7bdl1P448oye33h0c1GYWUZ8VThPJBsfzqjaOdfGTl2N0xWELNmjtKKarV-xJgBw6IAn2otlnjZ5RF-jkpwyErAvHOodGB_mGdJE-k?purpose=fullsize'),
+  P('Razer Huntsman V3 Pro TKL', 8299, 'https://images.openai.com/static-rsc-4/28arOvUK0p30g32s_J5uwzOgdACQaVd0qWRR4UhDlyJq9uN0CRKwmHeNvHG9Xrrw3yblL9j3Pvf6n9RsHtzQAvujYA4R_7JKiuC_-7nCmwKqBXPj4mYC_QWJbsRTsaBpy1Q5t3CutF_d6dfYd-dL3uT-eVI-Wzx5fGjWrCLo3ZKfvS70Lm58UqFn9ZAIquir?purpose=fullsize'),
+  P('Razer BlackWidow V4 X', 4399, 'https://images.openai.com/static-rsc-4/Qwn05cZGqB2FF3soujdeSAM0iJLwDC5Cs2CkA6M8OI3GRjN8dYkaTd9TqO122cWW85HaBVzTu-Bjrpl_S5n5nUllX6V-yON8oYMt-i2TH2OPde9HAt-E80ssi7gK0K0XyYtbia8j6mnA4E4qDvMZ-Pw279plYChlPNAsmARqoQm68nF98atQCRbfDkXw9ZV7?purpose=fullsize'),
+  P('Logitech G915 X Lightspeed TKL', 7499, 'https://images.openai.com/static-rsc-4/XWWG5EpF7GbPSmegdUg5q-U_TS36qE_LiRk4r8pJnIGmEiG-w9Z3If2uXrEcGJQ9fTmRkET5KVEgH0woPd64eq_xGHxuofOy72KWMvsrQD5WAnmdGqYwdzNt4lqYihfC3Y-k08z1xOz06VF-1erAjW9ePohYXqPRQyJOixR4LFmShOoVPsQ_6g3ilEkpfBI4?purpose=fullsize'),
+  P('SteelSeries Apex Pro TKL', 7699, 'https://images.openai.com/static-rsc-4/X4rfcPq0fiVDfmogTrrQJ5vsXxFLqF3NugW-Fpd9eej3P3nlZPP-BtmOtH3ziw-EzI8h7peZ17u-5XB0hg9TDVgNWWq-BJ6Irv30AEQwmZAPxRw_rnZreaTlnE0LbVt8RP5uZlBeDlPd8djEfUaBtf4PLgQRU2ywpd0tMzKQgseZ8rh6uPsBTxSQv4azmCjv?purpose=fullsize'),
+  P('Corsair K70 RGB Pro', 5399, 'https://images.openai.com/static-rsc-4/ikdH3eoKIVw8DkQC5fVmGrj99E3tpVCJ3OT_mCkRJikKIPPUFiycCuhl2-OvjQgkbnH0OFdlEz4XBcjOIScdk-e7S-nPenJ3NoReQPm-pFp9TR2DVBoKIflj4LULLBcQV6SV0UDt_GtO8IWkTwTzgpHvlPPBPoemaJum3aI2zNS7SP4MnW10JADmLWRwaYgJ?purpose=fullsize'),
+  P('ASUS ROG Strix Scope II 96 Wireless', 6999, 'https://images.openai.com/static-rsc-4/w6jKoz9WsyNsIdp0naDQHlf1qD8jn82SstVfYlsLGuyyOuCOYiZP6RUUIR1ET0DxSzXJupwiXcSwNf7kYPDS5LGSE8F-CRZ5niGNDCap1p3G4yhoc4uVLAJYP1sv07FYl0LWAQxhUWyxlDt8o9DHiogbFvmuxNolQ3q6EpTE8EOaWaM2Ek1oqPLrUC2T-nvb?purpose=fullsize'),
+  P('Ducky One 3 TKL', 4899, 'https://images.openai.com/static-rsc-4/cJORy83mm4rTZHUjSlFP-eAf11wY7pwZgaWQNeE9xyI6_JEsIvLLWczcGeKsJQnuWYGnzPc_eaBPFspvq9PSHT7m9PbLGcBhD3-N4whscpdCqHucnoTgDAQl9pCoAMHSAaEusb83fpUfFOQzFZCO5F28T6JGLaTknhdC_huycaeAD9JfdSUh0ZM2ZGpKl7N-?purpose=fullsize'),
+  P('Logitech G413 SE', 1999, 'https://images.openai.com/static-rsc-4/O6H2bMNDEer8JCvlVNzOx20b8txjANBT7pEjPypV-T2VzgqICfPb4x2b2-g-6nmFDIpozVFTTEVEkxx78sNb6aPNxi4_K0WiYsTHZCIejKjnmPizGiFgGVtHFyB8BIwzsTMUPOnPBOIp5bQJ76gG6OsFQhFBeDbAIqqWeN44ARpB4bN5nMX0XsOCUp15_izK?purpose=fullsize'),
+  P('Redragon Kumara K552', 1199, 'https://images.openai.com/static-rsc-4/4TCpV8Myl_w6WT2Uu2j1iiwotG7x1W1iCvjM-dX99yJBxd4WeAaVTFWVgb6iHb0Ac2XG0YI3D1ysaMQJ0vD9vOy57fCzCnotdAeV4wgenGd415x2QJZDTAUYVNyJznVCujmlzFvl3nOn8vYV4LtOkuCuQDfh1kBo2dxoDWlJIqpNSoIYJ3OYKWk_mlw206z6?purpose=fullsize')
+];
+
+// 3) 24 товари: 12 мікрофонів + 12 моніторів
+const MICS_MONITORS = [
+  { ...P('Blue Yeti', 3999, 'https://images.openai.com/static-rsc-4/R-CbwRrv0vDCS0skLrSfrHEtF0M2vZ5-NF7AKfdQFOyw4c7kXpxVVKLZd7pVgu3_L8W_MmrX5JmMxQG323fLpAsVmi2OhJ6J6_MJQ2z6Oqppesy65_itMjF8oOQIePZDiJeXtOCKHjPWr-rOrLZ9a6kKO5kszE_DynJuw4h9HzQ5l0GE874XcGErCF11e70R?purpose=fullsize'),                    type: 'mics' },
+  { ...P('HyperX QuadCast S', 4599, 'https://images.openai.com/static-rsc-4/bop-JGZTokZjw25nAhrFqCQIAfeGka3LcH5vSnUaD5StFEN-o2-p46WFRDyI2N1pbjrZie3enmHMtu8zHFN1CqU4PfmqLmUgoGVWC35vP82pUO1f1OyZ-6pvrx01Dg5BKVoxOjdBnAeF8q2cZvzQqEFaSqNGycZKFb3J_fI2gwTYm_U6r1xK4CwN8mZ3YAA8?purpose=fullsize'),            type: 'mics' },
+  { ...P('HyperX SoloCast', 2199, 'https://images.openai.com/static-rsc-4/HLoiRfMJTVieXDdYigg1BBNuUWs-4WKdD01OhX3papSRzy9sAvHCXJdaVdcPqnYtJJBJwdzG-P_i6IRocBXXYEtZhvjQ_Wr33D43XiEDzFXMCh0BmDDB2CjVTaap-zBXYE8P6nqYtwK_6VxCwo-kARtBsAsyKfKvBGTn-FSICC6y3MaiobZozqmfCCH79OZ4?purpose=fullsize'),              type: 'mics' },
+  { ...P('Razer Seiren V3 Chroma', 4499, 'https://images.openai.com/static-rsc-4/TrKiNx5hf8giNmBoCXMyw3cq2QLfGZmJM19-Lyis6xkc2b6RCxSYa8-Q802NMEgdXGkm9Se24mrsQg9_Tk3mD-GNzqqM8bfeokYn3KHaC7xJZJuCkqEtYHqHWaUnNq_Y5QTQYlGXI9AvVeSn6BN6r71KFxs-Vab1-Y7uocuPstGCvFNHFfnt4fq-YUGFIFMx?purpose=fullsize'),       type: 'mics' },
+  { ...P('Razer Seiren Mini', 1699, 'https://images.openai.com/static-rsc-4/mf7xeVxqYJzgj8BM-MEqjp4meoPVqUrYz1Q61fu_STCpJ0weOnJEDEidKk3uJ3Qc_4o-P1jFs0wbtUTjkRYAWE4onnQc0v39C4kP6vJs38Q3FUMwacJnHutQWdvcrMkHgc1sZBm8Mb7jCY-Sxe3aILHXfvUZHTWlZJTIod4Iq_gz46AlLEItO36UVpb1UoyB?purpose=fullsize'),            type: 'mics' },
+  { ...P('Shure MV7', 8999, 'https://images.openai.com/static-rsc-4/ZtXO6NFjvq7Zbk4Vz26SHqreSQm09wWQQwAvcxDTTMyLmAmgw_xOyglv9I3wE4hE-EZcxEAyrlKhSoaZDO-sqtwXqziEriO-uJj6ek6ZQFa5JRpRvKnVjTDO4_q2ec5UwW7dNXioN5GbwzyliAWt5QuH32LYK75qUU6WlRdVYtTlTU_ehoGF47Pd1SyZvHoX?purpose=fullsize'),                    type: 'mics' },
+  { ...P('RODE NT-USB Mini', 3999, 'https://images.openai.com/static-rsc-4/S3RWq15c6OonclbXN2-wuIxx_RHWOXaq55DpBNf5WOj7cWPEeOvoDJBGua8SlzH85H9p7lRIWmOB2D2YjJGoQXSHvjB-Bg8JF4bnpsBJmaKw0oH9s18rE8Fqt3s6zVKnYVkAwsQunpmAqrm27zLEnaCxhak6hg3kk28_fiBRgqwhKon2WmTeVdozWGNJz1WF?purpose=fullsize'),             type: 'mics' },
+  { ...P('Elgato Wave:3', 5499, 'https://images.openai.com/static-rsc-4/Sxm6kf-8-CvgWdpZoils0PWxoVW19hgy684PtnZFjQkcZxKDVIat8kOhQVSS3zp_q1IqN0ZL-Vh3ntyryt1fGk2U5z9n932cKnPvPdpUJZD-RvqItjE6ExTLy1Ekg6_9zK5n5ewplK1b5uXUq69Q9FtzuPW5jy8FpuUhrNI0-QInT7sZ8ABz4znsUe3_T2S1?purpose=fullsize'),                type: 'mics' },
+  { ...P('FIFINE AmpliGame A8', 1799, 'https://images.openai.com/static-rsc-4/zLlDq4g6iF3kEiUvJIUmyDB6ZhIu3l-MxpQt36TNDEPmCLoGEZefTWS7P2W_d_gkj95ZPhXEr1pQ9it5HgjCBnwFgFzaTzQiYq8ZVSOv-c3rxqllZ32ZMDuUX_OaOarKXPKwKsMgyIvRNazmPtrV6yoQQe1GpUifcpJJDc3FGN4Q6DZye3zSUN0ukCqoiLCO?purpose=fullsize'),          type: 'mics' },
+  { ...P('Audio-Technica AT2020USB-X', 5799, 'https://images.openai.com/static-rsc-4/4mnifvWDB0WVJqXw6euSDARRrVhVBfJf2ybauOLMEM4Smj9nkSj9Pl5p4C2RTSRrds4X344OTUgcwIs3mruIT4DN1jiFn1-XCiEiBxQdvWjW0WmS28Rn2AjyzW-neRktgnO9gIt2WsXSjh6uDua7NEG8vRkVT2AXVDzbDw33jwLVOS_6ZBb7yEySGH6Mnb-3?purpose=fullsize'),   type: 'mics' },
+  { ...P('Samson Q2U', 3999, 'https://images.openai.com/static-rsc-4/sGm7tQTs_I2C1uZcyrdzGQB1X6Gz1RnmU8l9cVy5Ih4Ty_x5LGW2f3Qv4q8gIPjNeXnpJd0K2sDlKcEqtNzHoSUiuCJ1oUHyk7vU-WfIDRQsvBMShZZyj-oVDsSZfMLJBXcFoIGYA-UYSsDYEW9N3g3I8pRIq_aQAtM8newcNi2-8BJyM9zoB09t_3Wfixyg?purpose=fullsize'),                   type: 'mics' },
+  { ...P('Logitech G Yeti GX', 4799, 'https://images.openai.com/static-rsc-4/TxSMPEwhx51z0N0LjdMv7ZjLoFDqlKRfQI-T-Zs1IgvOqht4OHKQ4rKhGzX38sWMzjCjyl2MIKqwxgDtpIUvACCR6yiOoBHDUaxAR4doCx9MY-DtZGSUIkrqynu7gBY2ntfFI5apRcW2tvXYyvso_7pXSHxkZwf4OugtqlGx4UEj1I_ro_y3We9VKYpbdGGn?purpose=fullsize'),           type: 'mics' },
+  { ...P('ASUS ROG Swift PG27AQN', 25999, 'https://images.openai.com/static-rsc-4/mU30473EITnDwKcyUiPbe7TtERlo4iJukBrOXCRWsYNbtcoUKD6iL3yD_tMaGA0bOLmDGki_iH5lfRduGyaZeJ9Snb4rVWOYthq6lhunO-HpjJyCc3r3bpvYSrkKtZGTc_Yg_fv-Zn6Kmgsv3ZX0B2pzjfOFOxKMx9FeGsXta7QwSFjXZ4QlKtWNv8yrGM5X?purpose=fullsize'),      type: 'monitors' },
+  { ...P('Samsung Odyssey G5 27"', 8499, 'https://images.openai.com/static-rsc-4/daFxSNUK236GnV5M4o4-coscVtnUodjhagNfaGkHgnU7zjRgha6xnK5wEGS3mjtTla90ZNiHnGN61_WPirlFslB_ETIWtcopME9vzoRjHCKh3W5QpthQG3hkv19DpZp5BXQ2bQw6y2NtCISIWQisXIIkEBUeXwQsiqpvExmPLHhdWF8olSw5Da72nBPZSTMU?purpose=fullsize'),       type: 'monitors' },
+  { ...P('LG UltraGear 27GP850-B', 11999, 'https://images.openai.com/static-rsc-4/y_spMPW8eMSO2TJu2bgMwJLGIvJGn7zXfviddmde22iQ1wj2YYsfGKyOpC-SqeOEnm0UI3brEiMYXcNjDIuFpVZWMU96248NF1sRIBNvxWikffOUiXNZD09YgcAzlMnnZNvcdAax_OOvL50PWaf0oMqEFwlwz7pYN2oiGAcmW--Uyf80Cd7ayx9aJsm334q0?purpose=fullsize'),      type: 'monitors' },
+  { ...P('AOC 24G2SP', 5499, 'https://images.openai.com/static-rsc-4/DeIrr6QQiNWjF63kgroLGOjEuWr3N5yygoVnaGCvmdpYAZtmtZQEu0ZGPvkw1qIe1sU3hgNU0LWkcANzxecQh6G3tnzTGMCchaZDwVZsZYKEv_atCsYJyuPCP52D71oxomkjsUkKJn--qrmlgpwVs-U4DswowYlaW5fqfKpDg33uA35UR53siAtp4lym-kQG?purpose=fullsize'),                   type: 'monitors' },
+  { ...P('MSI Optix MAG274QRF-QD', 10999, 'https://images.openai.com/static-rsc-4/V1UlEjJpciClcpAv8r2A8J_oQIHIWbEMA94g2-3n8ESgYWPGiIgle-RNVm3a0iL5EcxMt8iX4iGPq5IRNgmMqv9YzTfJ_q2rmgsjW0X_r3PrXY8Ss2jdiZRCeaQRkFTE1nqTnVaIGU0Dg__uwAZryof7z3aLMFPzIJu0NYfhPgQuaad0wt9feYl3Jo1-eBmP?purpose=fullsize'),      type: 'monitors' },
+  { ...P('Alienware AW2725DF QD-OLED', 25999, 'https://images.openai.com/static-rsc-4/2AgdveeRp95uph9_mckAbwq_TmJVYHiozy2io_RkZoCyI-NBMS6uLcyeKzVjdLgiNgk0X_28dY1boD_9X1XrV7flKQYYCbSXK-H4Njty_YNVJi76qRhfuhYaoy-Op-MxcV1H3qYVgDzHlYjra7xQjAJfMy6cEv7blHT2JWqND023v6cEgo0Ma5Y5w0dH17Fv?purpose=fullsize'),  type: 'monitors' },
+  { ...P('Gigabyte M27Q', 9499, 'https://images.openai.com/static-rsc-4/L0XKM85qVrFAHP9zQ7LIR8uYG1yXtY-VoEGcexx_VcDeBuZi_wj6TdW_WY7sJJ_7F084VKDyKcu5BJ0bmHQnvAaJKCdXK1DNod1HCw44CBM3PveLf3IO1dB4VUpufFMZKQPCQiehqzEH097vQENCgtV2FJaZHSgbCCFnADVbeXUpWti3v4OlweXdtqQo_os5?purpose=fullsize'),                type: 'monitors' },
+  { ...P('BenQ ZOWIE XL2546K', 17999, 'https://images.openai.com/static-rsc-4/OlvxxTrcpbmlDP-U1TW5Uraq36y-j9Db6S8XpbFBEHVJsd6nNqn4Ist3-TiX4hHrVzqnUhTC4gnGXixsOcOVuPbG-ZHHQXg3cd_prHCRdf_36DAUqP-99wePfyX5o2HT8fF5N8Dnuo3F549LeoESS2F21a1k16tx37PcsvHb5-QK4LzRg4Bbag6LkYkplsIQ?purpose=fullsize'),          type: 'monitors' },
+  { ...P('Acer Nitro VG271U', 7999, 'https://images.openai.com/static-rsc-4/W_A-f0KmyNE0lK73X7DLaw0G4j2RZbrzFQN-8CyZy2Pv6V0n-1SqzW6YX0Rpt2YgqYcIw4x_MDdeFjWTSeyDFoEKqHsTJJ60bDbWt1TNa-T2pvqlXouGiojL12dymoMkEBYCu7-tCJpVn4epmAPaXuvyX3gBbGvnKYgc7gBn-IMBPhZMDWSE18J2oI6P8NX0?purpose=fullsize'),            type: 'monitors' },
+  { ...P('ViewSonic XG2431', 6999, 'https://images.openai.com/static-rsc-4/xvU95XRPo3nH48Z_1mOndOzhxj-Zn3oXoWC6YfisjRAjSNz2OCAX5vQytOk5w5z9HddSIAfOhMU1T-2uFizGwiM8cTn1TZWU9LvKxpcu1qtd4fZOGWKEljQmnuPUIj3oxWso00vUAI73SDF0AvOP_d9K603fnG0Bud8LYfNrJbVdaP7MPjiO8YDfGv5F7QOV?purpose=fullsize'),             type: 'monitors' },
+  { ...P('Philips 27M1N3200ZS', 5599, 'https://images.openai.com/static-rsc-4/Ck10LCtjMQ2RCnS7J-0Hw-cnnUyIyKIJrQCWFmbpbHopx2F3Gu7ND0koVLNSng-gfnY4d8AYtlyj7BIlb10qbSbq82rj-tJCMoQFdZX7lGOA484CROMWylVu8z3A2R1beLWZY2FAkPBmZ_7Cgn3JppOIcjd1NTlAwQbCv5ZoavnEY8mA6PHb4-Ax-k0-Vc9_?purpose=fullsize'),          type: 'monitors' },
+  { ...P('Xiaomi G27i', 5499, 'https://images.openai.com/static-rsc-4/42DiE1Z9yv9W6JQJJ07fmRFOquAv4s7o2EC5-7HEEfe8CcwYLf5sEidY13flPfJf1TKV_3t8rymK2_4eOOnjedKupZaegOb3EMDDt22w5uF8cQGFP-erUx95q1qrZYFxSxMnUVHF-GEOYDePn-6PcQ9E7z02G9BO5An2JDwE10QiYZr3s0hmqEi9Va2WwriA?purpose=fullsize'),                  type: 'monitors' }
+];
+
+/* ===== Категорії ===== */
+const CATS = {
+  mice:      { code: 'MS', list: MICE },
+  keyboards: { code: 'KB', list: KEYBOARDS },
+  monitors:  { code: 'MN', list: MICS_MONITORS.filter(p => p.type === 'monitors') },
+  mics:      { code: 'MC', list: MICS_MONITORS.filter(p => p.type === 'mics') }
+};
+
+
+/* ===== Оцінки товарів (з 5) =====
+   УВАГА: це орієнтовні значення, а не вивантаження з Google.
+   Щоб поставити реальні — просто замініть числа нижче (порядок = порядок товарів у категорії). */
+const RATINGS = {
+  mice:      [4.7, 4.6, 4.5, 4.6, 4.5, 4.7, 4.6, 4.6, 4.6, 4.8, 4.7, 4.7,
+              4.5, 4.5, 4.4, 4.3, 4.5, 4.6, 4.4, 4.6, 4.5, 4.4, 4.6, 4.5],
+  keyboards: [4.8, 4.8, 4.7, 4.6, 4.5, 4.4, 4.6, 4.6, 4.5, 4.7, 4.7, 4.5,
+              4.6, 4.4, 4.5, 4.5, 4.5, 4.4, 4.5, 4.6, 4.5, 4.7, 4.5, 4.6],
+  mics:      [4.5, 4.5, 4.4, 4.4, 4.3, 4.7, 4.6, 4.5, 4.5, 4.7, 4.6, 4.4],
+  monitors:  [4.7, 4.5, 4.6, 4.6, 4.5, 4.6, 4.5, 4.6, 4.5, 4.5, 4.4, 4.4]
+};
+
+// Опис типу товару (показується в картці, перекладається)
+const TYPES = {
+  mice:      { uk: 'Ігрова миша',     en: 'Gaming mouse' },
+  keyboards: { uk: 'Клавіатура',      en: 'Keyboard' },
+  monitors:  { uk: 'Ігровий монітор', en: 'Gaming monitor' },
+  mics:      { uk: 'Мікрофон',        en: 'Microphone' }
+};
+
+
+/* ===== Малюнки на білому фоні (поки немає реальних фото) ===== */
+const xml = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+function wrapName(name) {
+  const lines = [];
+  let cur = '';
+  name.split(' ').forEach(w => {
+    if (cur && (cur + ' ' + w).length > 20) { lines.push(cur); cur = w; }
+    else cur = cur ? cur + ' ' + w : w;
+  });
+  if (cur) lines.push(cur);
+  return lines.slice(0, 3);
+}
+
+function illustration(cat, name) {
+  const st = 'fill="#f3e8ff" stroke="#7c3aed" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"';
+  const ln = 'fill="none" stroke="#7c3aed" stroke-width="6" stroke-linecap="round"';
+  let shape = '';
+  if (cat === 'mice') {
+    shape = `<rect x="142" y="50" width="116" height="180" rx="58" ${st}/>` +
+            `<path d="M200 50v75M142 125h116" ${ln}/><rect x="192" y="72" width="16" height="32" rx="8" fill="#7c3aed"/>`;
+  } else if (cat === 'keyboards') {
+    shape = `<rect x="56" y="80" width="288" height="140" rx="16" ${st}/>`;
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 10; c++) {
+      shape += `<rect x="${70 + c * 26}" y="${96 + r * 30}" width="22" height="22" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="2.5"/>`;
     }
+    shape += `<rect x="110" y="186" width="180" height="22" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="2.5"/>`;
+  } else if (cat === 'mics') {
+    shape = `<rect x="168" y="30" width="64" height="130" rx="32" ${st}/>` +
+            `<path d="M140 125a60 60 0 0 0 120 0M200 185v45M160 230h80" ${ln}/>`;
+  } else {
+    shape = `<rect x="70" y="42" width="260" height="170" rx="12" ${st}/>` +
+            `<rect x="86" y="58" width="228" height="138" rx="4" fill="#fff"/>` +
+            `<path d="M200 212v28M150 244h100" ${ln}/>`;
+  }
+  const text = wrapName(name).map((l, i) =>
+    `<text x="200" y="${292 + i * 28}" font-family="Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#222">${xml(l)}</text>`
+  ).join('');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">` +
+              `<rect width="400" height="400" fill="#fff"/>${shape}${text}</svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
 
-    /* Вибір категорії */
-    const categories = document.getElementById('categories');
-    categories.addEventListener('click', e => {
-      const btn = e.target.closest('button[data-cat]');
-      if (!btn) return;
-      categories.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
-      renderProducts(btn.dataset.cat);
-    });
+// Бренди (довші префікси — першими)
+const BRANDS = ['Endgame Gear', 'Dark Project', 'Audio-Technica', 'Logitech', 'Razer', 'Lamzu', 'ASUS',
+  'SteelSeries', 'ZOWIE', 'Glorious', 'Pulsar', 'HyperX', 'Corsair', 'Redragon', 'Wooting', 'Keychron',
+  'Akko', 'GMK', 'Epomaker', 'Ducky', 'Blue', 'Shure', 'RODE', 'Elgato', 'FIFINE', 'Samson', 'Samsung',
+  'LG', 'AOC', 'MSI', 'Alienware', 'Gigabyte', 'BenQ', 'Acer', 'ViewSonic', 'Philips', 'Xiaomi'];
+const brandOf = name => BRANDS.find(b => name.startsWith(b)) || name.split(' ')[0];
 
-    /* Стрілки слайдерів */
-    document.querySelectorAll('.slide-arrow').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const cards = btn.closest('.row').querySelector('.cards');
-        cards.scrollBy({ left: btn.dataset.dir * cards.clientWidth * 0.8, behavior: 'smooth' });
-      });
-    });
+/* ===== Пошук: нормалізація, відстань Левенштейна ===== */
+const norm = s => s.toLowerCase().replace(/["()]/g, ' ').replace(/\s+/g, ' ').trim();
 
-    /* ===== Кошик ===== */
-    const overlay = document.getElementById('overlay');
-    const cartList = document.getElementById('cartList');
-    const orderList = document.getElementById('orderList');
-    const totalEl = document.getElementById('total');
-    const countEl = document.getElementById('cartCount');
-
-    const openCart  = () => overlay.classList.add('open');
-    const closeCart = () => overlay.classList.remove('open');
-
-    document.getElementById('cartBtn').addEventListener('click', openCart);
-    document.getElementById('closeCart').addEventListener('click', closeCart);
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeCart(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
-
-    /* Додавання товару кнопкою «У кошик» */
-    document.addEventListener('click', e => {
-      const btn = e.target.closest('.btn-buy');
-      if (!btn) return;
-      const d = btn.closest('.card').dataset;
-      if (cart.has(d.id)) {
-        cart.get(d.id).qty++;
-      } else {
-        cart.set(d.id, { id: d.id, name: d.name, art: d.art, price: +d.price, qty: 1 });
-      }
-      renderCartList();
-      renderSummary();
-    });
-
-    /* Лівий вертикальний список */
-    function renderCartList() {
-      if (!cart.size) {
-        cartList.innerHTML = '<div class="empty">Кошик порожній</div>';
-        return;
-      }
-      cartList.innerHTML = [...cart.values()].map(it => `
-        <div class="cart-item" data-id="${it.id}">
-          <button class="remove" aria-label="Видалити">✕</button>
-          <div class="photo"></div>
-          <div class="meta">
-            <span class="name">${it.name}</span>
-            <span class="article">Арт. ${it.art}</span>
-          </div>
-          <input class="qty" type="number" min="1" value="${it.qty}">
-          <span class="price">${it.price} грн</span>
-        </div>`).join('');
+function lev(a, b) {
+  const m = a.length, n = b.length;
+  if (!m) return n;
+  if (!n) return m;
+  let prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) {
+    const cur = [i];
+    for (let j = 1; j <= n; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
     }
+    prev = cur;
+  }
+  return prev[n];
+}
 
-    /* Правий текстовий список, сума, лічильник на іконці */
-    function renderSummary() {
-      let sum = 0, count = 0, rows = '';
-      cart.forEach(it => {
-        sum += it.price * it.qty;
-        count += it.qty;
-        rows += `<div><span>${it.name}</span><span>${it.price} грн × ${it.qty}</span></div>`;
-      });
-      orderList.innerHTML = rows || '<div class="empty">Кошик порожній</div>';
-      totalEl.textContent = sum + ' грн';
-      countEl.textContent = count || '';
-    }
 
-    /* Зміна кількості */
-    cartList.addEventListener('input', e => {
-      if (!e.target.classList.contains('qty')) return;
-      const item = cart.get(e.target.closest('.cart-item').dataset.id);
-      item.qty = Math.max(1, parseInt(e.target.value, 10) || 1);
-      renderSummary();
+/* =====================================================
+   ФІЛЬТРИ КАТЕГОРІЙ + АТРИБУТИ ТОВАРІВ
+   markers — слова, за якими категорія знаходиться пошуком
+   groups  — підфільтри всередині категорії (чекбокси в акордеоні)
+   ===================================================== */
+const OPT = (v, uk, en) => ({ v, uk, en });
+const FILTERS = {
+  mice: {
+    markers: ['мышь', 'мышка', 'мыши', 'mouse', 'mice', 'миша', 'мишка', 'миші'],
+    groups: [
+      { key: 'conn', uk: 'Тип підключення', en: 'Connection type',
+        options: [OPT('wired', 'Дротова', 'Wired'), OPT('wireless', 'Бездротова', 'Wireless')] },
+      { key: 'use', uk: 'Призначення', en: 'Purpose',
+        options: [OPT('gaming', 'Геймінг', 'Gaming'), OPT('office', 'Офіс', 'Office')] }
+    ]
+  },
+  keyboards: {
+    markers: ['клавиатура', 'клавиатуры', 'клавіатура', 'клавіатури', 'keyboard', 'keyboards'],
+    groups: [
+      { key: 'type', uk: 'Тип клавіш', en: 'Key type',
+        options: [OPT('mechanical', 'Механічна', 'Mechanical'), OPT('membrane', 'Мембранна', 'Membrane')] },
+      { key: 'conn', uk: 'Тип підключення', en: 'Connection type',
+        options: [OPT('wired', 'Дротова', 'Wired'), OPT('wireless', 'Бездротова', 'Wireless')] }
+    ]
+  },
+  monitors: {
+    markers: ['монитор', 'мониторы', 'монітор', 'монітори', 'monitor', 'monitors'],
+    groups: [
+      { key: 'matrix', uk: 'Тип матриці', en: 'Panel type',
+        options: [OPT('IPS', 'IPS', 'IPS'), OPT('OLED', 'OLED', 'OLED'), OPT('VA', 'VA', 'VA'), OPT('TN', 'TN', 'TN')] },
+      { key: 'freq', uk: 'Частота', en: 'Refresh rate',
+        options: [OPT('144+', '144+ Гц', '144+ Hz'), OPT('60-75', '60–75 Гц', '60–75 Hz')] }
+    ]
+  },
+  mics: {
+    markers: ['микрофон', 'микрофоны', 'мікрофон', 'мікрофони', 'microphone', 'microphones', 'mic'],
+    groups: [
+      { key: 'conn', uk: 'Тип підключення', en: 'Connection type',
+        options: [OPT('usb', 'USB', 'USB'), OPT('xlr', 'XLR', 'XLR'), OPT('jack', 'Jack 3.5', 'Jack 3.5')] }
+    ]
+  }
+};
+
+/* Атрибути для фільтрів. Порядок = порядок товарів у категорії.
+   Якщо якийсь параметр неточний — просто виправте його тут. */
+const CONN = { w: ['wired'], l: ['wireless'], wl: ['wired', 'wireless'] };
+const A_MOUSE = (c, u) => ({ conn: CONN[c], use: u === 'go' ? ['gaming', 'office'] : ['gaming'] });
+const A_KB    = (ty, c) => ({ type: [ty === 'm' ? 'mechanical' : 'membrane'], conn: CONN[c] });
+const A_MON   = (matrix, hz) => ({ matrix: [matrix], freq: hz >= 144 ? ['144+'] : hz <= 75 ? ['60-75'] : [], hz });
+const A_MIC   = codes => ({ conn: codes.split('').map(c => ({ u: 'usb', x: 'xlr', j: 'jack' }[c])) });
+
+const ATTRS = {
+  mice: [
+    A_MOUSE('w', 'g'),  A_MOUSE('l', 'g'),  A_MOUSE('l', 'g'),  A_MOUSE('w', 'go'), A_MOUSE('w', 'g'),
+    A_MOUSE('l', 'g'),  A_MOUSE('l', 'g'),  A_MOUSE('l', 'go'), A_MOUSE('w', 'go'), A_MOUSE('l', 'g'),
+    A_MOUSE('l', 'g'),  A_MOUSE('l', 'g'),  A_MOUSE('w', 'g'),  A_MOUSE('wl', 'g'), A_MOUSE('wl', 'g'),
+    A_MOUSE('l', 'g'),  A_MOUSE('w', 'go'), A_MOUSE('w', 'g'),  A_MOUSE('l', 'g'),  A_MOUSE('l', 'g'),
+    A_MOUSE('l', 'g'),  A_MOUSE('l', 'g'),  A_MOUSE('l', 'g'),  A_MOUSE('w', 'g')
+  ],
+  keyboards: [
+    A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'w'),
+    A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'wl'), A_KB('m', 'wl'), A_KB('m', 'wl'),
+    A_KB('m', 'wl'), A_KB('m', 'wl'), A_KB('m', 'wl'), A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'l'),
+    A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'wl'), A_KB('m', 'w'),  A_KB('m', 'w'),  A_KB('m', 'w')
+  ],
+  mics: [
+    A_MIC('u'), A_MIC('u'), A_MIC('u'), A_MIC('u'), A_MIC('u'), A_MIC('ux'),
+    A_MIC('u'), A_MIC('u'), A_MIC('u'), A_MIC('u'), A_MIC('ux'), A_MIC('u')
+  ],
+  monitors: [
+    A_MON('IPS', 360), A_MON('VA', 165),  A_MON('IPS', 165), A_MON('IPS', 165),
+    A_MON('IPS', 165), A_MON('OLED', 360), A_MON('IPS', 170), A_MON('TN', 240),
+    A_MON('IPS', 144), A_MON('IPS', 240), A_MON('IPS', 165), A_MON('IPS', 165)
+  ]
+};
+
+
+/* =====================================================
+   АКЦІЇ: id товару -> знижка у %
+   Стара ціна показується закресленою, нова — яскравою.
+   Щоб додати/прибрати акцію — змініть цей список.
+   ===================================================== */
+const SALE = {
+  'mice-2': 15, 'mice-6': 10, 'mice-9': 20,
+  'keyboards-1': 12, 'keyboards-4': 20,
+  'mics-2': 15,
+  'monitors-3': 12, 'monitors-4': 10
+};
+
+/* Короткі характеристики для картки: «Ігрова миша · Бездротова · Геймінг» */
+function specsText(p, lang) {
+  const parts = [TYPES[p.cat][lang]];
+  if (p.cat === 'monitors') {
+    parts.push(p.attrs.matrix[0], p.attrs.hz + (lang === 'uk' ? ' Гц' : ' Hz'));
+  } else {
+    FILTERS[p.cat].groups.forEach(g => {
+      const labels = g.options.filter(o => p.attrs[g.key].includes(o.v)).map(o => o[lang]);
+      if (labels.length) parts.push(labels.join('/'));
     });
-    cartList.addEventListener('change', e => {
-      if (e.target.classList.contains('qty')) e.target.value = cart.get(e.target.closest('.cart-item').dataset.id).qty;
-    });
+  }
+  return parts.join(' · ');
+}
 
-    /* Видалення товару */
-    cartList.addEventListener('click', e => {
-      const btn = e.target.closest('.remove');
-      if (!btn) return;
-      cart.delete(btn.closest('.cart-item').dataset.id);
-      renderCartList();
-      renderSummary();
-    });
+// Збагачуємо кожен товар: id, артикул, бренд, англ. назва, текст для пошуку
+const ALL = {};
+Object.entries(CATS).forEach(([key, cat]) => {
+  cat.list.forEach((p, i) => {
+    p.cat = key;
+    p.id = `${key}-${i + 1}`;
+    p.art = `${cat.code}-${1000 + i + 1}`;
+    p.fb = illustration(key, p.name);          // запасна картинка, якщо фото не завантажиться
+    if (!p.img) p.img = p.fb;
+    p.rating = RATINGS[key][i];
+    p.brand = brandOf(p.name);
+    p.nameEn = p.name.replace('(дротова)', '(wired)');
+    p.attrs = ATTRS[key][i];
+    // тип підключення для загального фільтра «Дротові / Бездротові»
+    p.link = (key === 'mice' || key === 'keyboards') ? p.attrs.conn : key === 'mics' ? ['wired'] : [];
+    // акційна ціна
+    if (SALE[p.id]) { p.discount = SALE[p.id]; p.oldPrice = p.price; p.price = Math.round(p.price * (100 - p.discount) / 100); }
+    p.search = norm([p.name, p.nameEn, p.brand, TYPES[key].uk, TYPES[key].en, ...FILTERS[key].markers].join(' '));
+    p.words = [...new Set(p.search.split(' '))];
+    ALL[p.id] = p;
+  });
+});
+const ALL_LIST = Object.values(ALL);
 
-    /* Старт */
-    renderProducts('default');
-    renderCartList();
-    renderSummary();
+const tokensOf = q => norm(q).split(' ').filter(Boolean);
+
+// Наскільки слово запиту підходить до товару (0 — не підходить)
+function tokenScore(tok, p) {
+  if (p.words.some(w => w.startsWith(tok))) return 3;
+  if (p.search.includes(tok)) return 2;
+  if (tok.length >= 5) {                       // допускаємо одруківки: "sairen" -> "seiren"
+    const maxd = tok.length >= 8 ? 2 : 1;
+    if (p.words.some(w => Math.abs(w.length - tok.length) <= maxd && lev(tok, w) <= maxd)) return 1;
+  }
+  return 0;
+}
+function matchScore(p, tokens) {
+  let sum = 0;
+  for (const t of tokens) {
+    const s = tokenScore(t, p);
+    if (!s) return 0;                          // усі слова запиту мають знайтись
+    sum += s;
+  }
+  return sum;
+}
+
+
+/* =====================================================
+   СПІЛЬНА ЛОГІКА ДЛЯ ОБОХ СТОРІНОК
+   переклад UA/EN, шапка, кошик (зберігається між сторінками),
+   вікно «Про товар», малювання картки товару
+   ===================================================== */
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+
+/* ---- Переклади ---- */
+const I18N = {
+  uk: {
+    search_ph: 'Пошук...', nav_shop: 'Магазин', nav_catalog: 'Каталог',
+    to_catalog: 'В каталог', promo_title: 'Акції / Суперціна', popular_cats: 'Популярні категорії',
+    catalog_title: 'Каталог товарів', conn_type: 'Тип підключення', wired: 'Дротові', wireless: 'Бездротові',
+    brand: 'Бренд', pcs: 'товарів',
+    s1_t: 'Новорічний розпродаж', s1_p: 'Ігрова периферія зі знижками до −20%',
+    s2_t: 'Нові надходження', s2_p: 'Миші, клавіатури, монітори та мікрофони від кращих брендів',
+    s3_t: 'Збери свій ігровий сетап', s3_p: 'Усе для комфортної гри в одному місці',
+    f_about: 'Інтернет-магазин ігрової периферії.', f_social: 'Ми в соцмережах', f_contacts: 'Контакти',
+    f_rights: 'Усі права захищені.',
+    filters: 'Фільтри', sort_label: 'Сортування:',
+    sort_rel: 'За релевантністю', sort_asc: 'Від дешевих до дорогих', sort_desc: 'Від дорогих до дешевих',
+    to_list: 'Показати списком', to_grid: 'Показати плиткою', found: 'Знайдено',
+    categories: 'Категорії', cat_mice: 'Миші', cat_keyboards: 'Клавіатури', cat_monitors: 'Монітори', cat_mics: 'Мікрофони',
+    all_products: 'Усі товари', all_in_cat: 'Усі товари категорії',
+    ad_title: 'Реклама',
+    ad_text: 'Тут розміщується рекламний текст, який може бути дуже довгим, і якщо він не поміститься в блок, то автоматично обріжеться з трьома крапками в кінці рядка.',
+    banner: 'Новорічний розпродаж', sales: 'Розпродаж', new: 'Новинки',
+    price: 'Ціна', min_price: 'мін. ціна', max_price: 'макс. ціна', brands: 'Бренди', reset: '✕ Скинути',
+    about: 'Про товар', buy: 'У кошик', nothing: 'Нічого не знайдено', regular: 'Звичайна ціна', cur: 'грн',
+    brand_l: 'Бренд', cart: 'Кошик', cart_title: 'Відкрити кошик', product_list: 'Список товарів',
+    total_label: 'Сума замовлення:', checkout: 'Оформити замовлення', empty: 'Кошик порожній', art: 'Арт.'
+  },
+  en: {
+    search_ph: 'Search...', nav_shop: 'Shop', nav_catalog: 'Catalog',
+    to_catalog: 'To catalog', promo_title: 'Deals / Super price', popular_cats: 'Popular categories',
+    catalog_title: 'Product catalog', conn_type: 'Connection type', wired: 'Wired', wireless: 'Wireless',
+    brand: 'Brand', pcs: 'items',
+    s1_t: 'New Year Sale', s1_p: 'Gaming gear with discounts up to −20%',
+    s2_t: 'New arrivals', s2_p: 'Mice, keyboards, monitors and microphones from the best brands',
+    s3_t: 'Build your gaming setup', s3_p: 'Everything for comfortable play in one place',
+    f_about: 'Online store of gaming peripherals.', f_social: 'Follow us', f_contacts: 'Contacts',
+    f_rights: 'All rights reserved.',
+    filters: 'Filters', sort_label: 'Sort by:',
+    sort_rel: 'By relevance', sort_asc: 'Price: low to high', sort_desc: 'Price: high to low',
+    to_list: 'Show as list', to_grid: 'Show as tiles', found: 'Found',
+    categories: 'Categories', cat_mice: 'Mice', cat_keyboards: 'Keyboards', cat_monitors: 'Monitors', cat_mics: 'Microphones',
+    all_products: 'All products', all_in_cat: 'All items in category',
+    ad_title: 'Advertising',
+    ad_text: 'Advertising text goes here. It can be very long, and if it does not fit into the block, it is automatically cut off with an ellipsis at the end of the line.',
+    banner: 'New Year Sale', sales: 'Sales', new: 'New products',
+    price: 'Price', min_price: 'min. price', max_price: 'max. price', brands: 'Brands', reset: '✕ Reset',
+    about: 'Details', buy: 'Add to cart', nothing: 'Nothing found', regular: 'Regular price', cur: 'UAH',
+    brand_l: 'Brand', cart: 'Cart', cart_title: 'Open cart', product_list: 'Product list',
+    total_label: 'Order total:', checkout: 'Place order', empty: 'Your cart is empty', art: 'SKU'
+  }
+};
+
+/* ---- Стан і допоміжні функції ---- */
+const state = { lang: store.get('cg_lang', 'uk') === 'en' ? 'en' : 'uk' };
+
+const $ = id => document.getElementById(id);
+const t = k => I18N[state.lang][k];
+const loc = () => state.lang === 'uk' ? 'uk-UA' : 'en-US';
+const fmt = n => n.toLocaleString(loc());
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const pName = p => state.lang === 'en' ? p.nameEn : p.name;
+
+/* ---- Картка товару ---- */
+const ratingHTML = p => `<div class="rating" title="${p.rating} / 5"><span class="stars" style="--r:${p.rating}">★★★★★</span><span class="rate-num">${p.rating.toLocaleString(loc(), { minimumFractionDigits: 1 })}</span></div>`;
+
+function cardHTML(p) {
+  const name = esc(pName(p));
+  const badge = p.oldPrice ? `<span class="badge-sale">−${p.discount}%</span>` : '';
+  const old = p.oldPrice ? `<span class="old-price">${fmt(p.oldPrice)} ${t('cur')}</span>` : '';
+  return `
+    <div class="card" data-id="${p.id}">
+      <div class="photo">${badge}<img src="${p.img}" alt="${name}" loading="lazy" referrerpolicy="no-referrer" data-id="${p.id}" onerror="this.onerror=null;this.src=ALL[this.dataset.id].fb"></div>
+      <div class="card-body">
+        <span class="name" title="${name}">${name}</span>
+        <span class="type" title="${esc(specsText(p, state.lang))}">${esc(specsText(p, state.lang))}</span>
+      </div>
+      <div class="price-box ${p.oldPrice ? 'sale' : ''}">${old}<span class="price">${fmt(p.price)} ${t('cur')}</span></div>
+      ${ratingHTML(p)}
+      <div class="card-buttons">
+        <button class="btn-info">${t('about')}</button>
+        <button class="btn-buy">${t('buy')}</button>
+      </div>
+    </div>`;
+}
+
+/* ---- Переклад інтерфейсу ---- */
+function applyLang() {
+  document.documentElement.lang = state.lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = t(el.dataset.i18nPh));
+  document.querySelectorAll('[data-i18n-title]').forEach(el => el.title = t(el.dataset.i18nTitle));
+  document.querySelectorAll('#langBtn span').forEach(s => s.classList.toggle('on', s.dataset.l === state.lang));
+  $('balance').textContent = `${fmt(1250)} ${t('cur')}`;
+}
+
+/* ===== Кошик (зберігається в localStorage — єдиний для обох сторінок) ===== */
+const cart = new Map();
+const saved = store.get('cg_cart', []);
+if (Array.isArray(saved)) saved.forEach(item => {
+  if (Array.isArray(item) && ALL[item[0]] && item[1] > 0) cart.set(item[0], item[1]);
+});
+const saveCart = () => store.set('cg_cart', [...cart]);
+
+const overlay = $('overlay');
+const cartList = $('cartList');
+const orderList = $('orderList');
+const totalEl = $('total');
+const countEl = $('cartCount');
+
+const openCart  = () => overlay.classList.add('open');
+const closeCart = () => overlay.classList.remove('open');
+
+function addToCart(id) {
+  cart.set(id, (cart.get(id) || 0) + 1);
+  saveCart();
+  renderCartList();
+  renderSummary();
+}
+
+/* Вертикальний список зліва */
+function renderCartList() {
+  if (!cart.size) {
+    cartList.innerHTML = `<div class="empty">${t('empty')}</div>`;
+    return;
+  }
+  cartList.innerHTML = [...cart].map(([id, qty]) => {
+    const p = ALL[id], name = esc(pName(p));
+    return `
+    <div class="cart-item" data-id="${id}">
+      <button class="remove" aria-label="Remove">✕</button>
+      <div class="photo"><img src="${p.img}" alt="${name}" referrerpolicy="no-referrer" data-id="${p.id}" onerror="this.onerror=null;this.src=ALL[this.dataset.id].fb"></div>
+      <div class="meta">
+        <span class="name" title="${name}">${name}</span>
+        <span class="article">${t('art')} ${p.art}</span>
+      </div>
+      <input class="qty" type="number" min="1" value="${qty}">
+      <span class="price">${fmt(p.price)} ${t('cur')}</span>
+    </div>`;
+  }).join('');
+}
+
+/* Текстовий список справа, сума, лічильник на іконці */
+function renderSummary() {
+  let sum = 0, count = 0, rows = '';
+  cart.forEach((qty, id) => {
+    const p = ALL[id];
+    sum += p.price * qty;
+    count += qty;
+    rows += `<div><span>${esc(pName(p))}</span><span>${fmt(p.price)} ${t('cur')} × ${qty}</span></div>`;
+  });
+  orderList.innerHTML = rows || `<div class="empty">${t('empty')}</div>`;
+  totalEl.textContent = `${fmt(sum)} ${t('cur')}`;
+  countEl.textContent = count || '';
+}
+
+$('cartBtn').addEventListener('click', openCart);
+$('closeCart').addEventListener('click', closeCart);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeCart(); });
+
+cartList.addEventListener('input', e => {
+  if (!e.target.classList.contains('qty')) return;
+  cart.set(e.target.closest('.cart-item').dataset.id, Math.max(1, parseInt(e.target.value, 10) || 1));
+  saveCart();
+  renderSummary();
+});
+cartList.addEventListener('change', e => {
+  if (e.target.classList.contains('qty')) e.target.value = cart.get(e.target.closest('.cart-item').dataset.id);
+});
+cartList.addEventListener('click', e => {
+  const btn = e.target.closest('.remove');
+  if (!btn) return;
+  cart.delete(btn.closest('.cart-item').dataset.id);
+  saveCart();
+  renderCartList();
+  renderSummary();
+});
+
+/* ===== Вікно «Про товар» ===== */
+const productOverlay = $('productOverlay');
+let openId = null;
+
+function renderProduct() {
+  const p = ALL[openId];
+  const img = $('pImg');
+  img.referrerPolicy = 'no-referrer';
+  img.onerror = () => { img.onerror = null; img.src = p.fb; };
+  img.src = p.img;
+  img.alt = pName(p);
+  $('pName').textContent = pName(p);
+  $('pType').textContent = specsText(p, state.lang);
+  $('pRating').outerHTML = ratingHTML(p).replace('class="rating"', 'class="rating" id="pRating"');
+  $('pBrand').textContent = `${t('brand_l')}: ${p.brand}`;
+  $('pArt').textContent = `${t('art')} ${p.art}`;
+  $('pOld').textContent = p.oldPrice ? `${fmt(p.oldPrice)} ${t('cur')}` : '';
+  $('pPrice').textContent = `${fmt(p.price)} ${t('cur')}`;
+  $('pBuy').textContent = t('buy');
+}
+function openProduct(id) { openId = id; renderProduct(); productOverlay.classList.add('open'); }
+function closeProduct() { openId = null; productOverlay.classList.remove('open'); }
+
+$('closeProduct').addEventListener('click', closeProduct);
+productOverlay.addEventListener('click', e => { if (e.target === productOverlay) closeProduct(); });
+$('pBuy').addEventListener('click', () => { if (openId) addToCart(openId); });
+
+/* Кнопки на картках: «У кошик», «Про товар», клік по фото */
+document.addEventListener('click', e => {
+  const card = e.target.closest('.card');
+  if (!card) return;
+  if (e.target.closest('.btn-buy')) addToCart(card.dataset.id);
+  else if (e.target.closest('.btn-info') || e.target.closest('.photo')) openProduct(card.dataset.id);
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (productOverlay.classList.contains('open')) closeProduct();
+  else if (overlay.classList.contains('open')) closeCart();
+});
+
+/* ===== Шапка: мова і пошук ===== */
+$('langBtn').addEventListener('click', () => {
+  state.lang = state.lang === 'uk' ? 'en' : 'uk';
+  store.set('cg_lang', state.lang);
+  applyLang();
+  renderCartList();
+  renderSummary();
+  if (openId) renderProduct();
+  if (typeof pageRefresh === 'function') pageRefresh();   // сторінка перемальовує свій вміст
+});
+
+$('search').addEventListener('input', e => {
+  if (typeof onSearchInput === 'function') onSearchInput(e.target.value);   // є тільки в каталозі
+});
+$('search').addEventListener('keydown', e => {
+  // на сторінці магазину Enter відправляє запит у каталог
+  if (e.key === 'Enter' && document.body.dataset.page !== 'catalog') {
+    location.href = 'catalog.html?q=' + encodeURIComponent(e.target.value.trim());
+  }
+});
+
+/* ---- Старт ---- */
+applyLang();
+renderCartList();
+renderSummary();
+
+
+/* =====================================================
+   ГОЛОВНА СТОРІНКА (index.html)
+   1) слайдер-банер  2) блок «Акції / Суперціна»  3) слайдер категорій
+   ===================================================== */
+
+/* ---- 1) Банер-слайдер ---- */
+const slides = [...document.querySelectorAll('.slide')];
+const heroDots = $('heroDots');
+let cur = 0, timer = null;
+
+function showSlide(i) {
+  if (!slides.length) return;
+  cur = (i + slides.length) % slides.length;
+  slides.forEach((s, k) => s.classList.toggle('active', k === cur));
+  [...heroDots.children].forEach((d, k) => d.classList.toggle('active', k === cur));
+}
+function startAuto() {
+  clearInterval(timer);
+  timer = setInterval(() => showSlide(cur + 1), 6000);   // автоперемикання кожні 6 с
+}
+heroDots.innerHTML = slides.map((_, i) => `<button type="button" data-i="${i}" aria-label="${i + 1}"></button>`).join('');
+heroDots.addEventListener('click', e => {
+  const b = e.target.closest('button[data-i]');
+  if (b) { showSlide(+b.dataset.i); startAuto(); }
+});
+$('heroPrev').addEventListener('click', () => { showSlide(cur - 1); startAuto(); });
+$('heroNext').addEventListener('click', () => { showSlide(cur + 1); startAuto(); });
+showSlide(0);
+startAuto();
+
+/* ---- 2) Акції: беремо всі товари зі списку SALE (data.js) ---- */
+function renderPromo() {
+  $('promoGrid').innerHTML = Object.keys(SALE).map(id => cardHTML(ALL[id])).join('');
+}
+
+/* ---- 3) Популярні категорії (слайдер) ---- */
+function renderCats() {
+  $('catCards').innerHTML = Object.keys(CATS).map(k => {
+    const title = t('cat_' + k);
+    return `
+      <a class="cat-card" href="catalog.html?cat=${k}">
+        <div class="cat-img"><img src="${illustration(k, title)}" alt="${esc(title)}"></div>
+        <div class="cat-info"><span class="cat-name">${title}</span><em>${CATS[k].list.length} ${t('pcs')}</em></div>
+      </a>`;
+  }).join('');
+}
+
+document.querySelectorAll('.slide-arrow').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cards = btn.closest('.row').querySelector('.cards');
+    cards.scrollBy({ left: btn.dataset.dir * cards.clientWidth * 0.8, behavior: 'smooth' });
+  });
+});
+
+/* викликається з common.js при зміні мови */
+function pageRefresh() { renderPromo(); renderCats(); }
+
+renderPromo();
+renderCats();
+
   </script>
 
 </body>
