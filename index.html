@@ -668,8 +668,8 @@ button { font-family: inherit; cursor: pointer; }
 /* =====================================================
    БАЗА: однаковий масштаб і ширина на всіх сторінках
    ===================================================== */
-html { overflow-y: scroll; scrollbar-gutter: stable; -webkit-text-size-adjust: 100%; }
-body { overflow-x: hidden; }
+html { overflow-y: scroll; overflow-x: hidden; scrollbar-gutter: stable; -webkit-text-size-adjust: 100%; }
+body { overflow-x: visible; }   /* не hidden: інакше position: sticky не працює */
 img, svg { max-width: 100%; }
 .page { flex: 1; }
 .wrap { width: 100%; max-width: 1440px; margin: 0 auto; padding-left: 28px; padding-right: 28px; }
@@ -921,6 +921,242 @@ footer p, footer .contact a { margin-bottom: 8px; color: var(--muted); text-deco
 }
 
 
+/* =====================================================
+   ГОЛОВНА ЗА ШАБЛОНОМ УЧИТЕЛЯ
+   ===================================================== */
+.shop { display: flex; align-items: flex-start; gap: 28px; padding-top: 28px; padding-bottom: 50px; }   /* = .catalog */
+
+/* ліва панель */
+.aside-left {
+  flex: 0 0 20%;
+  width: 20%;
+  min-width: 220px;
+  background: var(--bg-panel);
+  border-right: 1px solid #33333f;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 22px;
+}
+.categories { flex: 1; }
+.categories h3 { margin-bottom: 14px; font-size: 1.2rem; color: var(--purple); }
+.categories button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid #44445a;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+.categories a {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid #44445a;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.categories button:hover,
+.categories a:hover,
+.categories button.active {
+  border-color: var(--purple);
+  color: #fff;
+  background: rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.6);
+}
+.ad {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid #33333f;
+  border-radius: 12px;
+  padding: 16px;
+  overflow: hidden;
+}
+.ad h3 { margin-bottom: 8px; color: var(--pink); font-size: 1.1rem; }
+.ad p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;      /* занадто довгий текст обрізається трьома крапками */
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* права частина: банер, Sales, New products */
+.shop-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 34px; }
+.shop-main .hero { height: 300px; }
+.shop-main .hero-dots { position: static; margin-top: -20px; }
+.shop-main .hero-dots button { background: #4a4a5c; }
+.shop-main .hero-dots button.active { background: var(--purple); box-shadow: 0 0 10px var(--purple); }
+
+/* стрілки: велика фіолетова праворуч; ліва з'являється, коли ряд прогорнули */
+.arrow { background: none; border: none; line-height: 1; transition: transform 0.15s; }
+.arrow:hover { transform: scale(1.2); }
+.block .row { position: relative; }
+.slide-prev {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  z-index: 3;
+  width: 58px;
+  height: 58px;
+  margin-top: -29px;
+  padding-bottom: 8px;
+  border-radius: 50%;
+  background: rgba(8, 8, 12, 0.8);
+  border: 1px solid var(--purple);
+  font-size: 3.2rem;
+  display: none;
+}
+.slide-prev.show { display: block; }
+.slide-prev:hover { transform: scale(1.1); }
+
+/* ряд карток — окрема рамка, як на шаблоні */
+.block .cards {
+  border: 1px solid #44445a;
+  border-radius: 16px;
+  padding: 14px;
+}
+
+/* картка за шаблоном: фото → [Про товар][У кошик] → Назва | Ціна */
+.card { flex: 0 0 236px; height: 470px; }   /* такий самий розмір, як у каталозі */
+.card .photo { order: 1; }
+.card .card-buttons { order: 2; }
+.card .card-row { order: 3; }
+.card .type { order: 4; }
+.card .rating { order: 5; }
+.card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; min-width: 0; }
+.card .card-row .name {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;      /* довга назва скорочується: «Logitech G Pr…» */
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.card-row .price-box { flex: 0 0 auto; min-height: 0; align-items: flex-end; text-align: right; }
+
+
+@media (max-width: 900px) {
+  .shop { flex-direction: column; align-items: stretch; }
+}
+
+/* =====================================================
+   ПЛАВНИЙ ПЕРЕХІД МІЖ СТОРІНКАМИ (магазин ⇄ каталог)
+   ===================================================== */
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+body { animation: pageIn 0.4s ease both; }
+body.leaving { opacity: 0; transition: opacity 0.28s ease; }
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+  body.leaving { transition: none; }
+}
+
+/* =====================================================
+   ПАНЕЛЬ ФІЛЬТРІВ — ОДНАКОВА НА ДВОХ СТОРІНКАХ
+   ===================================================== */
+.filters { width: 310px; flex: 0 0 310px; }
+
+.chosen { padding: 12px; background: var(--bg); border: 1px solid #44445a; border-radius: 12px; }
+.chosen-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.chosen-title { font-weight: 700; font-size: 0.95rem; color: var(--purple); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px 4px 10px;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid var(--purple);
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+.chip-x { background: none; border: none; color: var(--pink); font-size: 0.9rem; line-height: 1; padding: 2px 4px; }
+.chip-x:hover { text-shadow: 0 0 8px var(--pink); }
+.chips-empty { color: var(--muted); font-size: 0.85rem; }
+
+/* повзунок ціни з двома ручками */
+.range { position: relative; height: 30px; margin: 14px 4px 0; }
+.range-track, .range-fill { position: absolute; top: 12px; height: 6px; border-radius: 3px; }
+.range-track { left: 0; right: 0; background: #3a3a4a; }
+.range-fill { background: linear-gradient(90deg, var(--purple), var(--pink)); box-shadow: 0 0 10px rgba(168, 85, 247, 0.7); }
+.range input[type=range] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  margin: 0;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.range input[type=range]::-webkit-slider-runnable-track { background: transparent; height: 30px; }
+.range input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: auto;
+  width: 22px;
+  height: 22px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 3px solid var(--bg-panel);
+  box-shadow: 0 0 10px var(--green);
+  cursor: pointer;
+}
+.range input[type=range]::-moz-range-track { background: transparent; }
+.range input[type=range]::-moz-range-thumb {
+  pointer-events: auto;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 3px solid var(--bg-panel);
+  box-shadow: 0 0 10px var(--green);
+  cursor: pointer;
+}
+.range-scale { display: flex; justify-content: space-between; margin-top: 2px; color: var(--muted); font-size: 0.8rem; }
+
+
+/* ліва колонка головної: панель фільтрів (як у каталозі) + реклама — прикріплена, не їздить при прокрутці */
+.side {
+  flex: 0 0 310px;
+  width: 310px;
+  position: sticky;
+  top: 16px;
+  align-self: flex-start;
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.side .filters { position: static; flex: 1 1 auto; min-height: 0; max-height: none; width: 100%; overflow-y: auto; }
+.side .ad { flex: 0 0 auto; min-height: 0; }
+@media (max-width: 900px) {
+  .side { position: static; max-height: none; flex: none; width: 100%; }
+  .side .filters { flex: none; overflow-y: visible; }
+}
+
+
+/* ===== однаковий розмір картки на двох сторінках ===== */
+.card { flex: 0 0 236px; width: 236px; min-width: 0; }
+
   </style>
 </head>
 <body data-page="home">
@@ -964,23 +1200,35 @@ footer p, footer .contact a { margin-bottom: 8px; color: var(--muted); text-deco
       <button class="lang" id="langBtn" type="button"><span data-l="uk" class="on">UA</span> / <span data-l="en">EN</span></button>
       <div class="user">
         <button class="cart" id="cartBtn" data-i18n-title="cart_title">🛒<span class="cart-count" id="cartCount"></span></button>
-        <span>Steve</span>
+        <span>John</span>
         <div class="avatar"></div>
         <span class="balance" id="balance"></span>
       </div>
     </div>
   </header>
 
+  <!-- ===== ГОЛОВНА за шаблоном: ліва панель + (банер, Sales, New products) ===== -->
   <main class="page">
-    <div class="wrap home">
+  <div class="wrap shop">
 
-      <!-- 1. Банер-слайдер -->
+    <!-- Ліва панель (Aside left): зверху «Категорії», знизу реклама -->
+    <div class="side">
+      <!-- Та сама панель фільтрів, що й у каталозі -->
+      <aside class="filters" id="filters"></aside>
+      <div class="ad">
+        <h3 data-i18n="ad_title"></h3>
+        <p data-i18n="ad_text"></p>
+      </div>
+    </div>
+
+    <section class="shop-main">
+
+      <!-- Банер-слайдер зі стрілками ‹ › -->
       <section class="hero">
         <div class="slide s1">
           <div class="slide-text">
             <h2 data-i18n="s1_t"></h2>
             <p data-i18n="s1_p"></p>
-            <a class="btn-primary" href="catalog.html" data-i18n="to_catalog"></a>
           </div>
           <!-- Замініть <svg> на свою картинку: <img src="my-setup.jpg" alt=""> -->
           <div class="slide-art"><svg viewBox="0 0 400 260"><use href="#setup-art"/></svg></div>
@@ -989,47 +1237,44 @@ footer p, footer .contact a { margin-bottom: 8px; color: var(--muted); text-deco
           <div class="slide-text">
             <h2 data-i18n="s2_t"></h2>
             <p data-i18n="s2_p"></p>
-            <a class="btn-primary" href="catalog.html" data-i18n="to_catalog"></a>
           </div>
-          <!-- Замініть <svg> на свою картинку: <img src="my-setup.jpg" alt=""> -->
           <div class="slide-art"><svg viewBox="0 0 400 260"><use href="#setup-art"/></svg></div>
         </div>
         <div class="slide s3">
           <div class="slide-text">
             <h2 data-i18n="s3_t"></h2>
             <p data-i18n="s3_p"></p>
-            <a class="btn-primary" href="catalog.html" data-i18n="to_catalog"></a>
           </div>
-          <!-- Замініть <svg> на свою картинку: <img src="my-setup.jpg" alt=""> -->
           <div class="slide-art"><svg viewBox="0 0 400 260"><use href="#setup-art"/></svg></div>
         </div>
         <button class="hero-arrow hero-prev" id="heroPrev" type="button" aria-label="Previous">‹</button>
         <button class="hero-arrow hero-next" id="heroNext" type="button" aria-label="Next">›</button>
-        <div class="hero-dots" id="heroDots"></div>
       </section>
+      <!-- крапки слайдера — під банером -->
+      <div class="hero-dots" id="heroDots"></div>
 
-      <!-- 2. Акції / Суперціна -->
-      <section class="promo">
-        <div class="section-head">
-          <span class="pct">%</span>
-          <h2 data-i18n="promo_title"></h2>
-        </div>
-        <div class="grid" id="promoGrid"></div>
-      </section>
-
-      <!-- 3. Популярні категорії (слайдер) -->
-      <section class="popular">
-        <div class="section-head">
-          <h2 data-i18n="popular_cats"></h2>
-        </div>
+      <!-- Sales: довгий ряд карток + велика стрілка праворуч -->
+      <section class="block">
+        <h2 data-i18n="sales"></h2>
         <div class="row">
-          <button class="arrow slide-arrow" data-dir="-1" aria-label="Previous">‹</button>
-          <div class="cards" id="catCards"></div>
-          <button class="arrow slide-arrow" data-dir="1" aria-label="Next">›</button>
+          <button class="arrow slide-arrow slide-prev" type="button" data-dir="-1" aria-label="Previous">‹</button>
+          <div class="cards" id="cardsSales"></div>
+          <button class="arrow slide-arrow" type="button" data-dir="1" aria-label="Next">›</button>
         </div>
       </section>
 
-    </div>
+      <!-- New products -->
+      <section class="block">
+        <h2 data-i18n="new"></h2>
+        <div class="row">
+          <button class="arrow slide-arrow slide-prev" type="button" data-dir="-1" aria-label="Previous">‹</button>
+          <div class="cards" id="cardsNew"></div>
+          <button class="arrow slide-arrow" type="button" data-dir="1" aria-label="Next">›</button>
+        </div>
+      </section>
+
+    </section>
+  </div>
   </main>
 
   <!-- Підвал: соцмережі, контакти, копірайт (замініть посилання на свої) -->
@@ -1389,6 +1634,31 @@ function specsText(p, lang) {
   return parts.join(' · ');
 }
 
+/* =====================================================
+   КРАЇНА-ВИРОБНИК: країна бренду (орієнтовно — виправте за потреби)
+   ===================================================== */
+const COUNTRIES = {
+  us: { uk: 'США',            en: 'USA' },
+  cn: { uk: 'Китай',          en: 'China' },
+  tw: { uk: 'Тайвань',        en: 'Taiwan' },
+  dk: { uk: 'Данія',          en: 'Denmark' },
+  nl: { uk: 'Нідерланди',     en: 'Netherlands' },
+  de: { uk: 'Німеччина',      en: 'Germany' },
+  ch: { uk: 'Швейцарія',      en: 'Switzerland' },
+  jp: { uk: 'Японія',         en: 'Japan' },
+  au: { uk: 'Австралія',      en: 'Australia' },
+  kr: { uk: 'Південна Корея', en: 'South Korea' },
+  ua: { uk: 'Україна',        en: 'Ukraine' }
+};
+const BRAND_COUNTRY = {
+  'Razer': 'us', 'Logitech': 'ch', 'Lamzu': 'cn', 'ASUS': 'tw', 'SteelSeries': 'dk', 'ZOWIE': 'tw', 'BenQ': 'tw',
+  'Glorious': 'us', 'Pulsar': 'tw', 'HyperX': 'us', 'Corsair': 'us', 'Endgame Gear': 'de', 'Redragon': 'cn',
+  'Wooting': 'nl', 'Dark Project': 'ua', 'Keychron': 'cn', 'Akko': 'cn', 'GMK': 'cn', 'Epomaker': 'cn', 'Ducky': 'tw',
+  'Blue': 'us', 'Shure': 'us', 'RODE': 'au', 'Elgato': 'de', 'FIFINE': 'cn', 'Audio-Technica': 'jp', 'Samson': 'us',
+  'Samsung': 'kr', 'LG': 'kr', 'AOC': 'cn', 'MSI': 'tw', 'Alienware': 'us', 'Gigabyte': 'tw', 'Acer': 'tw',
+  'ViewSonic': 'us', 'Philips': 'nl', 'Xiaomi': 'cn'
+};
+
 // Збагачуємо кожен товар: id, артикул, бренд, англ. назва, текст для пошуку
 const ALL = {};
 Object.entries(CATS).forEach(([key, cat]) => {
@@ -1400,6 +1670,7 @@ Object.entries(CATS).forEach(([key, cat]) => {
     if (!p.img) p.img = p.fb;
     p.rating = RATINGS[key][i];
     p.brand = brandOf(p.name);
+    p.country = BRAND_COUNTRY[p.brand] || 'cn';
     p.nameEn = p.name.replace('(дротова)', '(wired)');
     p.attrs = ATTRS[key][i];
     // тип підключення для загального фільтра «Дротові / Бездротові»
@@ -1450,7 +1721,7 @@ const store = {
 /* ---- Переклади ---- */
 const I18N = {
   uk: {
-    search_ph: 'Пошук...', nav_shop: 'Магазин', nav_catalog: 'Каталог',
+    search_ph: 'Пошук...', nav_shop: 'Магазин', nav_catalog: 'Каталог', chosen: 'Фільтри обрані', chosen_none: 'Нічого не обрано', country: 'Країна-виробник',
     to_catalog: 'В каталог', promo_title: 'Акції / Суперціна', popular_cats: 'Популярні категорії',
     catalog_title: 'Каталог товарів', conn_type: 'Тип підключення', wired: 'Дротові', wireless: 'Бездротові',
     brand: 'Бренд', pcs: 'товарів',
@@ -1466,14 +1737,14 @@ const I18N = {
     all_products: 'Усі товари', all_in_cat: 'Усі товари категорії',
     ad_title: 'Реклама',
     ad_text: 'Тут розміщується рекламний текст, який може бути дуже довгим, і якщо він не поміститься в блок, то автоматично обріжеться з трьома крапками в кінці рядка.',
-    banner: 'Новорічний розпродаж', sales: 'Розпродаж', new: 'Новинки',
+    banner: 'Новорічний розпродаж', sales: 'Sales', new: 'New products', price_sale: 'Ціна зі знижкою',
     price: 'Ціна', min_price: 'мін. ціна', max_price: 'макс. ціна', brands: 'Бренди', reset: '✕ Скинути',
     about: 'Про товар', buy: 'У кошик', nothing: 'Нічого не знайдено', regular: 'Звичайна ціна', cur: 'грн',
     brand_l: 'Бренд', cart: 'Кошик', cart_title: 'Відкрити кошик', product_list: 'Список товарів',
     total_label: 'Сума замовлення:', checkout: 'Оформити замовлення', empty: 'Кошик порожній', art: 'Арт.'
   },
   en: {
-    search_ph: 'Search...', nav_shop: 'Shop', nav_catalog: 'Catalog',
+    search_ph: 'Search...', nav_shop: 'Shop', nav_catalog: 'Catalog', chosen: 'Selected filters', chosen_none: 'Nothing selected', country: 'Country of origin',
     to_catalog: 'To catalog', promo_title: 'Deals / Super price', popular_cats: 'Popular categories',
     catalog_title: 'Product catalog', conn_type: 'Connection type', wired: 'Wired', wireless: 'Wireless',
     brand: 'Brand', pcs: 'items',
@@ -1489,7 +1760,7 @@ const I18N = {
     all_products: 'All products', all_in_cat: 'All items in category',
     ad_title: 'Advertising',
     ad_text: 'Advertising text goes here. It can be very long, and if it does not fit into the block, it is automatically cut off with an ellipsis at the end of the line.',
-    banner: 'New Year Sale', sales: 'Sales', new: 'New products',
+    banner: 'New Year Sale', sales: 'Sales', new: 'New products', price_sale: 'Discounted price',
     price: 'Price', min_price: 'min. price', max_price: 'max. price', brands: 'Brands', reset: '✕ Reset',
     about: 'Details', buy: 'Add to cart', nothing: 'Nothing found', regular: 'Regular price', cur: 'UAH',
     brand_l: 'Brand', cart: 'Cart', cart_title: 'Open cart', product_list: 'Product list',
@@ -1517,11 +1788,11 @@ function cardHTML(p) {
   return `
     <div class="card" data-id="${p.id}">
       <div class="photo">${badge}<img src="${p.img}" alt="${name}" loading="lazy" referrerpolicy="no-referrer" data-id="${p.id}" onerror="this.onerror=null;this.src=ALL[this.dataset.id].fb"></div>
-      <div class="card-body">
+      <div class="card-row">
         <span class="name" title="${name}">${name}</span>
-        <span class="type" title="${esc(specsText(p, state.lang))}">${esc(specsText(p, state.lang))}</span>
+        <div class="price-box ${p.oldPrice ? 'sale' : ''}">${old}<span class="price">${fmt(p.price)} ${t('cur')}</span></div>
       </div>
-      <div class="price-box ${p.oldPrice ? 'sale' : ''}">${old}<span class="price">${fmt(p.price)} ${t('cur')}</span></div>
+      <span class="type" title="${esc(specsText(p, state.lang))}">${esc(specsText(p, state.lang))}</span>
       ${ratingHTML(p)}
       <div class="card-buttons">
         <button class="btn-info">${t('about')}</button>
@@ -1537,7 +1808,7 @@ function applyLang() {
   document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = t(el.dataset.i18nPh));
   document.querySelectorAll('[data-i18n-title]').forEach(el => el.title = t(el.dataset.i18nTitle));
   document.querySelectorAll('#langBtn span').forEach(s => s.classList.toggle('on', s.dataset.l === state.lang));
-  $('balance').textContent = `${fmt(1250)} ${t('cur')}`;
+  $('balance').textContent = '₴1250';
 }
 
 /* ===== Кошик (зберігається в localStorage — єдиний для обох сторінок) ===== */
@@ -1680,7 +1951,7 @@ $('search').addEventListener('input', e => {
 $('search').addEventListener('keydown', e => {
   // на сторінці магазину Enter відправляє запит у каталог
   if (e.key === 'Enter' && document.body.dataset.page !== 'catalog') {
-    location.href = 'catalog.html?q=' + encodeURIComponent(e.target.value.trim());
+    goTo('catalog.html?q=' + encodeURIComponent(e.target.value.trim()));
   }
 });
 
@@ -1688,6 +1959,271 @@ $('search').addEventListener('keydown', e => {
 applyLang();
 renderCartList();
 renderSummary();
+
+
+/* =====================================================
+   ПАНЕЛЬ ФІЛЬТРІВ — однакова на головній і в каталозі
+   (цей блок однаковий у index.html і catalog.html)
+   Сторінка лише визначає applyFilters(): що перемалювати після зміни.
+   ===================================================== */
+const PRICE_MAX = Math.ceil(Math.max(...ALL_LIST.map(p => p.price)) / 1000) * 1000;   // верхня межа повзунка
+const PRICE_STEP = 100;
+
+const FS = { min: null, max: null, brands: new Set(), link: new Set(), country: new Set(), all: new Set(), open: new Set(), sub: {} };
+Object.keys(FILTERS).forEach(k => {
+  FS.sub[k] = {};
+  FILTERS[k].groups.forEach(g => FS.sub[k][g.key] = new Set());
+});
+
+/* Вибрані фільтри зберігаються на час сесії — при переході між сторінками вони лишаються */
+function saveFilters() {
+  const sub = {};
+  Object.keys(FS.sub).forEach(k => { sub[k] = {}; Object.keys(FS.sub[k]).forEach(g => sub[k][g] = [...FS.sub[k][g]]); });
+  try {
+    sessionStorage.setItem('cg_filters', JSON.stringify({
+      min: FS.min, max: FS.max, brands: [...FS.brands], link: [...FS.link], country: [...FS.country],
+      all: [...FS.all], open: [...FS.open], sub
+    }));
+  } catch (e) {}
+}
+(function loadFilters() {
+  try {
+    const d = JSON.parse(sessionStorage.getItem('cg_filters') || 'null');
+    if (!d) return;
+    FS.min = typeof d.min === 'number' ? d.min : null;
+    FS.max = typeof d.max === 'number' ? d.max : null;
+    ['brands', 'link', 'country', 'all', 'open'].forEach(k => (d[k] || []).forEach(v => FS[k].add(v)));
+    Object.keys(FS.sub).forEach(c => Object.keys(FS.sub[c]).forEach(g =>
+      (((d.sub || {})[c] || {})[g] || []).forEach(v => FS.sub[c][g].add(v))));
+  } catch (e) {}
+})();
+
+/* ---- Фільтрація (для будь-якої сторінки) ---- */
+const catActive = k => FS.all.has(k) || Object.values(FS.sub[k]).some(s => s.size);
+
+function matchesFilters(p, skip) {      // skip = 'country' — не враховувати країну (для підрахунку списку країн)
+  if (FS.min != null && p.price < FS.min) return false;
+  if (FS.max != null && p.price > FS.max) return false;
+  if (FS.link.size && !p.link.some(v => FS.link.has(v))) return false;
+  if (FS.brands.size && !FS.brands.has(p.brand)) return false;
+  if (skip !== 'country' && FS.country.size && !FS.country.has(p.country)) return false;
+  const active = Object.keys(CATS).filter(catActive);
+  if (!active.length) return true;                       // категорії не вибрані — все
+  if (!active.includes(p.cat)) return false;
+  // усередині категорії: між групами — «І», у межах групи — «АБО»
+  return Object.entries(FS.sub[p.cat]).every(([g, set]) => !set.size || p.attrs[g].some(v => set.has(v)));
+}
+
+/* ---- Обрані фільтри (чипи) ---- */
+let chipList = [];
+function activeChips() {
+  const chips = [];
+  Object.keys(CATS).forEach(k => {
+    if (FS.all.has(k)) chips.push({ label: t('cat_' + k), kind: 'all', cat: k });
+    FILTERS[k].groups.forEach(g => g.options.forEach(o => {
+      if (FS.sub[k][g.key].has(o.v)) chips.push({ label: `${t('cat_' + k)}: ${o[state.lang]}`, kind: 'sub', cat: k, g: g.key, v: o.v });
+    }));
+  });
+  if (FS.min != null || FS.max != null) {
+    chips.push({ label: `${t('price')}: ${fmt(FS.min != null ? FS.min : 0)} – ${fmt(FS.max != null ? FS.max : PRICE_MAX)}`, kind: 'price' });
+  }
+  FS.link.forEach(v => chips.push({ label: t(v), kind: 'link', v }));
+  FS.country.forEach(v => chips.push({ label: COUNTRIES[v][state.lang], kind: 'country', v }));
+  FS.brands.forEach(v => chips.push({ label: v, kind: 'brand', v }));
+  return chips;
+}
+function renderChips() {
+  chipList = activeChips();
+  $('chips').innerHTML = chipList.length
+    ? chipList.map((c, i) => `<span class="chip">${esc(c.label)}<button type="button" class="chip-x" data-i="${i}" aria-label="Remove">✕</button></span>`).join('')
+    : `<span class="chips-empty">${t('chosen_none')}</span>`;
+}
+function removeChip(c) {
+  if (c.kind === 'all') FS.all.delete(c.cat);
+  else if (c.kind === 'sub') FS.sub[c.cat][c.g].delete(c.v);
+  else if (c.kind === 'price') FS.min = FS.max = null;
+  else if (c.kind === 'link') FS.link.delete(c.v);
+  else if (c.kind === 'country') FS.country.delete(c.v);
+  else if (c.kind === 'brand') FS.brands.delete(c.v);
+}
+
+/* ---- Малювання панелі ---- */
+const CHEVRON = '<svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+
+function optHTML(role, cat, group, value, label, n, checked) {
+  return `<label class="opt ${n || checked ? '' : 'off'}">
+    <input type="checkbox" data-role="${role}" data-cat="${cat}" data-g="${group}" value="${esc(value)}" ${checked ? 'checked' : ''} ${n || checked ? '' : 'disabled'}>
+    <span>${label}</span><em>${n}</em></label>`;
+}
+
+/* Країни: показуємо лише ті, де є товари на цій сторінці й за поточних фільтрів */
+function countryOptionsHTML() {
+  const lang = state.lang, counts = {};
+  const pool = typeof pagePool === 'function' ? pagePool() : ALL_LIST;      // які товари взагалі є на сторінці
+  pool.filter(p => matchesFilters(p, 'country')).forEach(p => counts[p.country] = (counts[p.country] || 0) + 1);
+  FS.country.forEach(c => { if (!counts[c]) counts[c] = 0; });              // вибрану країну лишаємо, щоб її можна було зняти
+  const keys = Object.keys(counts).sort((a, b) => COUNTRIES[a][lang].localeCompare(COUNTRIES[b][lang], lang));
+  if (!keys.length) return `<div class="chips-empty">${t('nothing')}</div>`;
+  return keys.map(c => optHTML('country', '', '', c, COUNTRIES[c][lang], counts[c], FS.country.has(c))).join('');
+}
+function renderCountries() {
+  if ($('countryBox')) $('countryBox').innerHTML = countryOptionsHTML();
+}
+
+function buildFilterPanel() {
+  const lang = state.lang;
+
+  // категорії — акордеон (клік по назві або по галочці справа розкриває / закриває)
+  const cats = Object.keys(CATS).map(key => {
+    const list = CATS[key].list;
+    const open = FS.open.has(key);
+    let body = optHTML('all', key, '', key, t('all_in_cat'), list.length, FS.all.has(key));
+    FILTERS[key].groups.forEach(g => {
+      body += `<div class="sub"><h5>${g[lang]}</h5>`;
+      g.options.forEach(o => {
+        const n = list.filter(p => p.attrs[g.key].includes(o.v)).length;
+        body += optHTML('sub', key, g.key, o.v, o[lang], n, FS.sub[key][g.key].has(o.v));
+      });
+      body += '</div>';
+    });
+    return `
+      <div class="acc ${open ? 'open' : ''}" data-acc="${key}">
+        <button class="acc-head" type="button" aria-expanded="${open}">
+          <span class="acc-name">${t('cat_' + key)} <em>${list.length}</em></span>
+          ${CHEVRON}
+        </button>
+        <div class="acc-body"><div class="acc-inner"><div class="acc-pad">${body}</div></div></div>
+      </div>`;
+  }).join('');
+
+  // підключення, бренди
+  const bc = {};
+  ALL_LIST.forEach(p => { bc[p.brand] = (bc[p.brand] || 0) + 1; });
+  const links = ['wired', 'wireless'].map(v =>
+    optHTML('link', '', '', v, t(v), ALL_LIST.filter(p => p.link.includes(v)).length, FS.link.has(v))).join('');
+  const brands = Object.keys(bc).sort((a, b) => a.localeCompare(b))
+    .map(b => optHTML('brand', '', '', b, esc(b), bc[b], FS.brands.has(b))).join('');
+
+  $('filters').innerHTML = `
+    <div class="chosen">
+      <div class="chosen-head"><span class="chosen-title">${t('chosen')}</span><button class="reset-btn" id="resetBtn" type="button">${t('reset')}</button></div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="f-block"><h4>${t('categories')}</h4><div class="acc-list" id="accList">${cats}</div></div>
+    <div class="f-block">
+      <h4>${t('price')}</h4>
+      <div class="price-row">
+        <input type="number" id="minPrice" min="0" placeholder="${t('min_price')}">
+        <input type="number" id="maxPrice" min="0" placeholder="${t('max_price')}">
+      </div>
+      <div class="range">
+        <div class="range-track"></div><div class="range-fill" id="rangeFill"></div>
+        <input type="range" id="rangeMin" min="0" max="${PRICE_MAX}" step="${PRICE_STEP}" value="0">
+        <input type="range" id="rangeMax" min="0" max="${PRICE_MAX}" step="${PRICE_STEP}" value="${PRICE_MAX}">
+      </div>
+      <div class="range-scale"><span>0</span><span>${fmt(PRICE_MAX)}</span></div>
+    </div>
+    <div class="f-block"><h4>${t('country')}</h4><div id="countryBox">${countryOptionsHTML()}</div></div>
+    <div class="f-block"><h4>${t('conn_type')}</h4>${links}</div>
+    <div class="f-block"><h4>${t('brand')}</h4><div class="brand-scroll">${brands}</div></div>`;
+  syncPriceUI();
+  renderChips();
+}
+
+/* ---- Ціна: поля «мін / макс» + повзунок із двома ручками ---- */
+const toNum = v => v === '' ? null : Math.max(0, +v);
+
+function syncPriceUI(skipNumbers) {
+  const rMin = $('rangeMin'), rMax = $('rangeMax');
+  if (!rMin || !rMax) return;
+  const lo = FS.min == null ? 0 : Math.min(FS.min, PRICE_MAX);
+  const hi = FS.max == null ? PRICE_MAX : Math.min(FS.max, PRICE_MAX);
+  rMin.value = Math.min(lo, hi);
+  rMax.value = Math.max(lo, hi);
+  $('rangeFill').style.left = (lo / PRICE_MAX * 100) + '%';
+  $('rangeFill').style.width = (Math.max(0, hi - lo) / PRICE_MAX * 100) + '%';
+  rMin.style.zIndex = lo > PRICE_MAX * 0.9 ? 4 : 2;            // щоб ручку «мін» можна було взяти, коли обидві біля краю
+  if (!skipNumbers) {
+    $('minPrice').value = FS.min == null ? '' : FS.min;
+    $('maxPrice').value = FS.max == null ? '' : FS.max;
+  }
+}
+
+function onRange(which) {
+  let lo = +$('rangeMin').value, hi = +$('rangeMax').value;
+  if (hi - lo < PRICE_STEP) { if (which === 'min') lo = hi - PRICE_STEP; else hi = lo + PRICE_STEP; }
+  lo = Math.max(0, lo);
+  hi = Math.min(PRICE_MAX, Math.max(hi, lo + PRICE_STEP));
+  FS.min = lo <= 0 ? null : lo;
+  FS.max = hi >= PRICE_MAX ? null : hi;
+  syncPriceUI();
+}
+
+/* ---- Події панелі (один раз, делегуванням) ---- */
+function filtersChanged(rebuild) {
+  saveFilters();
+  if (rebuild) buildFilterPanel(); else { renderChips(); renderCountries(); }
+  applyFilters();                                // визначає сторінка
+}
+
+$('filters').addEventListener('click', e => {
+  const head = e.target.closest('.acc-head');
+  if (head) {
+    const acc = head.parentElement;
+    const open = !acc.classList.contains('open');
+    acc.classList.toggle('open', open);
+    head.setAttribute('aria-expanded', open);
+    open ? FS.open.add(acc.dataset.acc) : FS.open.delete(acc.dataset.acc);
+    saveFilters();
+    return;
+  }
+  const x = e.target.closest('.chip-x');
+  if (x) { removeChip(chipList[+x.dataset.i]); filtersChanged(true); return; }
+  if (e.target.closest('#resetBtn')) {
+    FS.min = FS.max = null;
+    FS.brands.clear(); FS.link.clear(); FS.country.clear(); FS.all.clear();
+    Object.values(FS.sub).forEach(groups => Object.values(groups).forEach(s => s.clear()));
+    filtersChanged(true);
+  }
+});
+
+$('filters').addEventListener('change', e => {
+  const el = e.target;
+  if (el.type !== 'checkbox') return;
+  const role = el.dataset.role, cat = el.dataset.cat;
+  const acc = el.closest('.acc');
+  if (role === 'all') {
+    if (el.checked) {
+      FS.all.add(cat);
+      Object.values(FS.sub[cat]).forEach(s => s.clear());
+      acc.querySelectorAll('input[data-role="sub"]').forEach(i => i.checked = false);
+    } else FS.all.delete(cat);
+  } else if (role === 'sub') {
+    const set = FS.sub[cat][el.dataset.g];
+    el.checked ? set.add(el.value) : set.delete(el.value);
+    if (el.checked) {
+      FS.all.delete(cat);
+      acc.querySelector('input[data-role="all"]').checked = false;
+    }
+  } else if (role === 'link') {
+    el.checked ? FS.link.add(el.value) : FS.link.delete(el.value);
+  } else if (role === 'country') {
+    el.checked ? FS.country.add(el.value) : FS.country.delete(el.value);
+  } else if (role === 'brand') {
+    el.checked ? FS.brands.add(el.value) : FS.brands.delete(el.value);
+  }
+  filtersChanged(false);
+});
+
+$('filters').addEventListener('input', e => {
+  const id = e.target.id;
+  if (id === 'minPrice') { FS.min = toNum(e.target.value); syncPriceUI(true); }
+  else if (id === 'maxPrice') { FS.max = toNum(e.target.value); syncPriceUI(true); }
+  else if (id === 'rangeMin') onRange('min');
+  else if (id === 'rangeMax') onRange('max');
+  else return;
+  filtersChanged(false);
+});
 
 
 /* =====================================================
@@ -1720,35 +2256,74 @@ $('heroNext').addEventListener('click', () => { showSlide(cur + 1); startAuto();
 showSlide(0);
 startAuto();
 
-/* ---- 2) Акції: беремо всі товари зі списку SALE (data.js) ---- */
-function renderPromo() {
-  $('promoGrid').innerHTML = Object.keys(SALE).map(id => cardHTML(ALL[id])).join('');
+/* ---- 2) Ряди товарів: Sales і New products ---- */
+const ROWS = [
+  { key: 'sales', el: $('cardsSales') },
+  { key: 'new',   el: $('cardsNew') }
+];
+
+// Знижка видна прямо в картках (стара ціна закреслена, нова яскрава), тому окремого блоку-прикладу немає.
+// Ці два нові товари теж зі знижкою — щоб у «New products» були і акційна, і звичайна ціна.
+const NEW_ON_SALE = ['mice-9', 'keyboards-4'];
+
+function rowList(key) {
+  if (key === 'sales') return Object.keys(SALE).filter(id => !NEW_ON_SALE.includes(id)).map(id => ALL[id]);
+  const regular = Object.keys(CATS).flatMap(k => CATS[k].list.filter(p => !p.discount).slice(-3));
+  return [...NEW_ON_SALE.map(id => ALL[id]), ...regular];     // жоден товар не повторюється в обох рядах
 }
 
-/* ---- 3) Популярні категорії (слайдер) ---- */
-function renderCats() {
-  $('catCards').innerHTML = Object.keys(CATS).map(k => {
-    const title = t('cat_' + k);
-    return `
-      <a class="cat-card" href="catalog.html?cat=${k}">
-        <div class="cat-img"><img src="${illustration(k, title)}" alt="${esc(title)}"></div>
-        <div class="cat-info"><span class="cat-name">${title}</span><em>${CATS[k].list.length} ${t('pcs')}</em></div>
-      </a>`;
-  }).join('');
+function syncPrev(row) {
+  const cards = row.querySelector('.cards');
+  row.querySelector('.slide-prev').classList.toggle('show', cards.scrollLeft > 8);
 }
 
+function renderRows() {
+  ROWS.forEach(r => {
+    const list = rowList(r.key).filter(matchesFilters);            // панель фільтрів зліва
+    r.el.innerHTML = list.length ? list.map(cardHTML).join('') : `<div class="nothing">${t('nothing')}</div>`;
+    r.el.scrollLeft = 0;
+    syncPrev(r.el.closest('.row'));
+  });
+}
+
+/* Стрілки рядів */
 document.querySelectorAll('.slide-arrow').forEach(btn => {
   btn.addEventListener('click', () => {
     const cards = btn.closest('.row').querySelector('.cards');
     cards.scrollBy({ left: btn.dataset.dir * cards.clientWidth * 0.8, behavior: 'smooth' });
   });
 });
+document.querySelectorAll('.row').forEach(row => {
+  row.querySelector('.cards').addEventListener('scroll', () => syncPrev(row));
+});
 
-/* викликається з common.js при зміні мови */
-function pageRefresh() { renderPromo(); renderCats(); }
+/* викликається при зміні мови */
+function pageRefresh() { buildFilterPanel(); renderRows(); }
 
-renderPromo();
-renderCats();
+/* викликається панеллю фільтрів після кожної зміни */
+function applyFilters() { renderRows(); }
+
+/* які товари є на головній (для списку країн): ті, що в рядах Sales і New products */
+function pagePool() { return [...new Set([...rowList('sales'), ...rowList('new')])]; }
+
+buildFilterPanel();
+renderRows();
+
+
+/* ---- Плавний перехід між сторінками: згасання → нова сторінка з’являється ---- */
+function goTo(url) {
+  document.body.classList.add('leaving');
+  setTimeout(() => { location.href = url; }, 280);
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href]');
+  if (!a || e.defaultPrevented || e.button || e.ctrlKey || e.metaKey || e.shiftKey || a.target === '_blank') return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || /^(https?:|mailto:|tel:)/.test(href)) return;   // тільки внутрішні сторінки
+  e.preventDefault();
+  goTo(href);
+});
+window.addEventListener('pageshow', () => document.body.classList.remove('leaving'));   // кнопка «Назад» у браузері
 
   </script>
 
