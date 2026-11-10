@@ -1134,24 +1134,11 @@ body.leaving { opacity: 0; transition: opacity 0.28s ease; }
 .range-scale { display: flex; justify-content: space-between; margin-top: 2px; color: var(--muted); font-size: 0.8rem; }
 
 
-/* ліва колонка головної: панель фільтрів (як у каталозі) + реклама — прикріплена, не їздить при прокрутці */
-.side {
-  flex: 0 0 310px;
-  width: 310px;
-  position: sticky;
-  top: 16px;
-  align-self: flex-start;
-  max-height: calc(100vh - 32px);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.side .filters { position: static; flex: 1 1 auto; min-height: 0; max-height: none; width: 100%; overflow-y: auto; }
+/* ліва колонка головної: панель фільтрів — ТОЧНО як у каталозі (розмір і прикріплення), реклама — внизу колонки */
+.side { flex: 0 0 310px; width: 310px; align-self: stretch; display: flex; flex-direction: column; gap: 20px; }
+.side-top { flex: 1 1 auto; min-width: 0; }
 .side .ad { flex: 0 0 auto; min-height: 0; }
-@media (max-width: 900px) {
-  .side { position: static; max-height: none; flex: none; width: 100%; }
-  .side .filters { flex: none; overflow-y: visible; }
-}
+@media (max-width: 900px) { .side { flex: none; width: 100%; } }
 
 
 /* ===== однаковий розмір картки на двох сторінках ===== */
@@ -1214,7 +1201,7 @@ body.leaving { opacity: 0; transition: opacity 0.28s ease; }
     <!-- Ліва панель (Aside left): зверху «Категорії», знизу реклама -->
     <div class="side">
       <!-- Та сама панель фільтрів, що й у каталозі -->
-      <aside class="filters" id="filters"></aside>
+      <div class="side-top"><aside class="filters" id="filters"></aside></div>
       <div class="ad">
         <h3 data-i18n="ad_title"></h3>
         <p data-i18n="ad_text"></p>
@@ -2059,7 +2046,7 @@ function optHTML(role, cat, group, value, label, n, checked) {
 /* Країни: показуємо лише ті, де є товари на цій сторінці й за поточних фільтрів */
 function countryOptionsHTML() {
   const lang = state.lang, counts = {};
-  const pool = typeof pagePool === 'function' ? pagePool() : ALL_LIST;      // які товари взагалі є на сторінці
+  const pool = ALL_LIST;      // той самий набір товарів на обох сторінках — панель завжди однакова
   pool.filter(p => matchesFilters(p, 'country')).forEach(p => counts[p.country] = (counts[p.country] || 0) + 1);
   FS.country.forEach(c => { if (!counts[c]) counts[c] = 0; });              // вибрану країну лишаємо, щоб її можна було зняти
   const keys = Object.keys(counts).sort((a, b) => COUNTRIES[a][lang].localeCompare(COUNTRIES[b][lang], lang));
@@ -2266,7 +2253,15 @@ const ROWS = [
 // Ці два нові товари теж зі знижкою — щоб у «New products» були і акційна, і звичайна ціна.
 const NEW_ON_SALE = ['mice-9', 'keyboards-4'];
 
+const filtersOn = () => FS.min != null || FS.max != null || FS.brands.size || FS.link.size || FS.country.size ||
+  Object.keys(CATS).some(catActive);
+
 function rowList(key) {
+  if (filtersOn()) {
+    // фільтри працюють так само, як у каталозі — по всіх товарах; Sales — акційні, New products — решта
+    const found = ALL_LIST.filter(p => matchesFilters(p));
+    return key === 'sales' ? found.filter(p => p.discount) : found.filter(p => !p.discount);
+  }
   if (key === 'sales') return Object.keys(SALE).filter(id => !NEW_ON_SALE.includes(id)).map(id => ALL[id]);
   const regular = Object.keys(CATS).flatMap(k => CATS[k].list.filter(p => !p.discount).slice(-3));
   return [...NEW_ON_SALE.map(id => ALL[id]), ...regular];     // жоден товар не повторюється в обох рядах
@@ -2279,7 +2274,7 @@ function syncPrev(row) {
 
 function renderRows() {
   ROWS.forEach(r => {
-    const list = rowList(r.key).filter(matchesFilters);            // панель фільтрів зліва
+    const list = rowList(r.key);
     r.el.innerHTML = list.length ? list.map(cardHTML).join('') : `<div class="nothing">${t('nothing')}</div>`;
     r.el.scrollLeft = 0;
     syncPrev(r.el.closest('.row'));
@@ -2302,9 +2297,6 @@ function pageRefresh() { buildFilterPanel(); renderRows(); }
 
 /* викликається панеллю фільтрів після кожної зміни */
 function applyFilters() { renderRows(); }
-
-/* які товари є на головній (для списку країн): ті, що в рядах Sales і New products */
-function pagePool() { return [...new Set([...rowList('sales'), ...rowList('new')])]; }
 
 buildFilterPanel();
 renderRows();

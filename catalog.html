@@ -1854,7 +1854,7 @@ function optHTML(role, cat, group, value, label, n, checked) {
 /* Країни: показуємо лише ті, де є товари на цій сторінці й за поточних фільтрів */
 function countryOptionsHTML() {
   const lang = state.lang, counts = {};
-  const pool = typeof pagePool === 'function' ? pagePool() : ALL_LIST;      // які товари взагалі є на сторінці
+  const pool = ALL_LIST;      // той самий набір товарів на обох сторінках — панель завжди однакова
   pool.filter(p => matchesFilters(p, 'country')).forEach(p => counts[p.country] = (counts[p.country] || 0) + 1);
   FS.country.forEach(c => { if (!counts[c]) counts[c] = 0; });              // вибрану країну лишаємо, щоб її можна було зняти
   const keys = Object.keys(counts).sort((a, b) => COUNTRIES[a][lang].localeCompare(COUNTRIES[b][lang], lang));
@@ -2063,14 +2063,9 @@ function refreshGrid() {
 /* викликається панеллю фільтрів після кожної зміни */
 function applyFilters() { refreshGrid(); }
 
-/* які товари є на сторінці (для списку країн): усі, що підходять під пошук */
-function pagePool() {
-  const tk = tokensOf(cs.query);
-  return tk.length ? ALL_LIST.filter(p => matchScore(p, tk) > 0) : ALL_LIST;
-}
 
 /* ---- Пошук у шапці (живий) ---- */
-function onSearchInput(v) { cs.query = v; renderCountries(); refreshGrid(); }
+function onSearchInput(v) { cs.query = v; refreshGrid(); }
 
 /* ---- Сортування ---- */
 $('sortSel').addEventListener('change', e => { cs.sort = e.target.value; refreshGrid(); });
